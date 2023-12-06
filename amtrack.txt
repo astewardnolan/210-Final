@@ -151,7 +151,9 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -92.485305999871969,40.031405999687195,230,LAP,"La Plata, Missouri",535 N. Owensby St.,R.R. #1,La Plata,MO,63549,RAIL,29
 -115.148913904952735,36.097856893880589,231,LAS,"Las Vegas International Airport, Nevada",5757 Wayne Newton Blvd,McCarran International Airport,Las Vegas,NV,89111-5000,BUS,32
 -118.236533999644337,34.056297000306358,233,POS,LAX,END,"Los Angeles, California",800 North Alameda Street,Los Angeles Union Passenger Terminal,Los Angeles,CA,90012-2902,RAIL,06
+-118.236533999644337,34.056297000306358,233,BUR,LAX,END,"Los Angeles, California",800 North Alameda Street,Los Angeles Union Passenger Terminal,Los Angeles,CA,90012-2902,RAIL,06
 -118.236533999644337,34.056297000306358,233,START,LAX,POS,"Los Angeles, California",800 North Alameda Street,Los Angeles Union Passenger Terminal,Los Angeles,CA,90012-2902,RAIL,06
+-118.236533999644337,34.056297000306358,233,START,LAX,BUR,"Los Angeles, California",800 North Alameda Street,Los Angeles Union Passenger Terminal,Los Angeles,CA,90012-2902,RAIL,06
 
 -118.188559999644212,33.774177999914798,234,LBC,"Long Beach, California",601 North Long Beach Blvd.,Denny's Restaurant,Long Beach,CA,90802-1323,BUS,06
 -118.265327000040998,34.230685999659215,236,LCA,"La Crescenta, California",Honolulu & Lowell Avenue,Near I-210,La Crescenta,CA,91214,BUS,06
@@ -254,7 +256,8 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -97.499451000063573,25.899884999693029,357,BSV,"Brownsville, Texas",1134 E. St. Charles Street,,Brownsville,TX,78520-5042,BUS,48
 -78.726608000358908,42.906917999566076,360,BUF,"Buffalo (Depew), New York",55 Dick Road,,Depew,NY,14043,RAIL,36
 -120.193382000378961,34.611339999741233,361,BUL,"Buellton, California",238 E Highway 246,Burger King Restaurant,Buellton,CA,93427,BUS,06
--118.355910999992602,34.193831999846964,362,BUR,"Burbank (Airport), California",3750 Empire Avenue,,Burbank,CA,91505,RAIL,06
+-118.355910999992602,34.193831999846964,362,VNC,BUR,LAX,"Burbank (Airport), California",3750 Empire Avenue,,Burbank,CA,91505,RAIL,06
+-118.355910999992602,34.193831999846964,362,LAX,BUR,VNC,"Burbank (Airport), California",3750 Empire Avenue,,Burbank,CA,91505,RAIL,06
 -76.69339799991775,39.189551999325374,364,BAL,BWI,NCR,"BWI Rail Station at Thurgood Marshall Airport, Mar",7 Amtrak Way,BWI Thurgood Marshall Airport,BWI Airport,MD,21240-0642,RAIL,24
 -76.69339799991775,39.189551999325374,364,NCR,BWI,BAL,"BWI Rail Station at Thurgood Marshall Airport, Mar",7 Amtrak Way,BWI Thurgood Marshall Airport,BWI Airport,MD,21240-0642,RAIL,24
 
@@ -340,7 +343,8 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -117.750632999713105,34.059395000179165,629,LAX,POS,ONA,"Pomona (Sunset Ltd), California",100 West Commercial Street,,Pomona,CA,91768,RAIL,06
 
 -73.939011000057576,41.705672999409444,630,POU,"Poughkeepsie, New York",41 Main St.,Amtrak/Metro-North Station,Poughkeepsie,NY,12601-2909,RAIL,36
--120.686934999750406,35.622924999589088,631,PRB,"Paso Robles, California",800 Pine Street,Paso Robles Intermodal Station,Paso Robles,CA,93446-2856,RAIL,06
+-120.686934999750406,35.622924999589088,631,SNS,PRB,SLO,"Paso Robles, California",800 Pine Street,Paso Robles Intermodal Station,Paso Robles,CA,93446-2856,RAIL,06
+-120.686934999750406,35.622924999589088,631,SLO,PRB,SNS,"Paso Robles, California",800 Pine Street,Paso Robles Intermodal Station,Paso Robles,CA,93446-2856,RAIL,06
 -117.216636999597824,33.791392999687218,633,PRI,"Perris, California",1688-J North Perris Blvd,International House of Pancakes,Perris,CA,92571-4702,BUS,06
 -73.444275000091125,44.578040999992197,634,PRK,"Port Kent, New York",Hwy 373 & Back Rd,near Burlington-Fort Kent ferry dock,Port Kent,NY,12975,RAIL,36
 -119.084244000260355,46.233596999302108,636,PSC,"Pasco, Washington",535 North 1st Avenue,Pasco Intermodal Train Station,Pasco,WA,99301-5378,RAIL,53
@@ -395,7 +399,8 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -119.296576999329034,34.276751999805015,467,VEC,"Ventura, California",Harbor Blvd and Figueroa Street,,Ventura,CA,93003,RAIL,06
 -119.277710000715899,36.327273999995157,468,VIS,"Visalia, California",425 E. Oak Street,Visalia Transit Center,Visalia,CA,93291-5053,BUS,06
 -122.227942999269942,38.134326999691325,469,VMW,"Marine World (Seasonal), Vallejo, California",Highway 37 and Fairgrounds Drive,See VAL for daily Vallejo bus stop,Vallejo,CA,94589,BUS,06
--118.447922000100164,34.21097900008084,470,VNC,"Van Nuys (Amtrak), California",7724 Van Nuys Blvd.,,Van Nuys,CA,91405,RAIL,06
+-118.447922000100164,34.21097900008084,470,SIM,VNC,BUR,"Van Nuys (Amtrak), California",7724 Van Nuys Blvd.,,Van Nuys,CA,91405,RAIL,06
+-118.447922000100164,34.21097900008084,470,BUR,VNC,SIM,"Van Nuys (Amtrak), California",7724 Van Nuys Blvd.,,Van Nuys,CA,91405,RAIL,06
 -117.292129999699682,34.536628999728634,472,VRV,"Victorville, California",16858 D St.,"train on east side, bus on west side",Victorville,CA,92392,RAIL,06
 -72.752471999982788,44.335072000072785,473,ESX,WAB,MPR,"Waterbury, Vermont",US Hwy 2 and Park Row,,Waterbury,VT,05676,RAIL,50
 -72.752471999982788,44.335072000072785,473,MPR,WAB,ESX,"Waterbury, Vermont",US Hwy 2 and Park Row,,Waterbury,VT,05676,RAIL,50
@@ -489,8 +494,8 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 
 -122.197740496826441,37.751881256914544,571,OAC,"Coliseum/Oakland Airport, Oakland, California",700 73rd Avenue,Across San Leandro Blvd. from BART station,Oakland,CA,94621-3316,RAIL,06
 -119.582265484464529,48.362645885898985,574,OGW,"Okanagan,  Washington",310 2nd Ave South,Food Depot,Okanogan,WA,98840,BUS,53
--122.270743999935632,37.794646999659335,577,EMY,OKJ,"Oakland, California",245 Second Street,,Oakland,CA,94607,RAIL,06
--122.270743999935632,37.794646999659335,577,OKJ,EMY,"Oakland, California",245 Second Street,,Oakland,CA,94607,RAIL,06
+-122.270743999935632,37.794646999659335,577,EMY,OKJ,SJC,"Oakland, California",245 Second Street,,Oakland,CA,94607,RAIL,06
+-122.270743999935632,37.794646999659335,577,SJC,OKJ,EMY,"Oakland, California",245 Second Street,,Oakland,CA,94607,RAIL,06
 
 -72.708351000498226,43.400619999513424,579,OKO,"Okemo, Vermont",77 Okemo Ridge Rd,The Inn at Jackson Gore,Ludlow,VT,05149-9692,BUS,50
 -117.199988125751361,32.755454962276758,580,OLT,"San Diego (Old Town), California",4005 Taylor Street,,San Diego,CA,92110,RAIL,06
@@ -505,7 +510,8 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -121.570182999745612,39.51986700006205,590,ORV,"Oroville, California",Hwy 70 and Grand Ave.,Park and Ride,Oroville,CA,95965,BUS,06
 -72.376022000414935,41.300533000597568,591,OSB,"Old Saybrook, Connecticut",455 Boston Post Road,Saybrook Junction Market Place,Old Saybrook,CT,06475-1516,RAIL,09
 -117.378623999897627,33.192580999913275,593,OSD,"Oceanside, California",235 South Tremont Street,Oceanside Transit Center,Oceanside,CA,92054,RAIL,06
--119.174866000165764,34.198833000242814,596,OXN,"Oxnard, California",201 East Fourth Street,Oxnard Transportation Center,Oxnard,CA,93030,RAIL,06
+-119.174866000165764,34.198833000242814,596,SBA,OXN,SIM,"Oxnard, California",201 East Fourth Street,Oxnard Transportation Center,Oxnard,CA,93030,RAIL,06
+-119.174866000165764,34.198833000242814,596,SIM,OXN,SBA,"Oxnard, California",201 East Fourth Street,Oxnard Transportation Center,Oxnard,CA,93030,RAIL,06
 -75.483748999816441,40.042286000498564,599,PAO,"Paoli, Pennsylvania",13 Lancaster Ave.,Lancaster Pike & North Valley Rd,Paoli,PA,19301,RAIL,42
 -75.921775999862462,39.959182999296047,600,PAR,"Parkesburg, Pennsylvania",W. First and S. Culvert Streets,,Parkesburg,PA,19365,RAIL,42
 -118.140426999506417,34.14333000017939,601,PAS,"Pasadena, California",150 South Los Robles Ave.,Pasadena Hilton Hotel,Pasadena,CA,91101-2441,BUS,06
@@ -558,15 +564,16 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -98.478133999784234,29.419104000349364,700,DRT,SAS,SMC,"San Antonio, Texas",350 Hoefgen Street,,San Antonio,TX,78205,RAIL,48
 
 -120.415252999526274,34.951129999449961,701,SAT,"Santa Maria, California",205 South Nicholson Avenue,International House of Pancakes,Santa Maria,CA,93455,BUS,06
--119.690720000027966,34.413924999738981,703,SBA,"Santa Barbara, California",209 State Street,,Santa Barbara,CA,93101-3833,RAIL,06
+-119.690720000027966,34.413924999738981,703,SLO,SBA,OXN,"Santa Barbara, California",209 State Street,,Santa Barbara,CA,93101-3833,RAIL,06
+-119.690720000027966,34.413924999738981,703,OXN,SBA,SLO,"Santa Barbara, California",209 State Street,,Santa Barbara,CA,93101-3833,RAIL,06
 -121.938200216566713,37.351997276553107,708,SCC,"Santa Clara (Caltrain/ACE), California",1001 Railroad Ave.,,Santa Clara,CA,95050-4319,BUS,06
 -90.812652999935949,29.746907999504629,710,SCH,"Schriever, Louisiana",Hwy 20 and Hwy 24,,Schriever,LA,70395,RAIL,22
 -121.495289217923016,38.57590796937734,711,SCS,"Sacramento (State Capitol), California",1389 10th Street,Drop-Only Bus Stop,Sacramento,CA,95814-4905,BUS,06
 -122.023941000376851,36.9705009993217,712,SCZ,"Santa Cruz (Metro Center), California",920 Pacific Ave,Highway 17 Express - Metro Center Boards Lane 2,Santa Cruz,CA,95060,BUS,06
 -89.78243299958325,30.278232999653255,713,SDL,"Slidell, Louisiana",1827 Front Street,,Slidell,LA,70458,RAIL,22
 -73.942824999673974,42.815265999826067,714,SDY,"Schenectady, New York",332 Erie Blvd.,,Schenectady,NY,12305-1817,RAIL,36
--122.32842999994449,47.598911000442342,716,SEA,TAC,"Seattle (Amtrak), Washington",303 South Jackson Street,King St. Station,Seattle,WA,98104-2868,RAIL,53
--122.32842999994449,47.598911000442342,716,TAC,SEA,"Seattle (Amtrak), Washington",303 South Jackson Street,King St. Station,Seattle,WA,98104-2868,RAIL,53
+-122.32842999994449,47.598911000442342,716,START,SEA,TAC,"Seattle (Amtrak), Washington",303 South Jackson Street,King St. Station,Seattle,WA,98104-2868,RAIL,53
+-122.32842999994449,47.598911000442342,716,TAC,SEA,END"Seattle (Amtrak), Washington",303 South Jackson Street,King St. Station,Seattle,WA,98104-2868,RAIL,53
 -93.228377999944712,38.711871999892935,717,SED,"Sedalia, Missouri","100 block of Main Street, through parking lot",Temporary entrance due to construction,Sedalia,MO,65301,RAIL,29
 -122.393187999626434,37.795253999772342,719,SFC,"San Francisco (Ferry), California",101 The Embarcadero,at Mission St. and The Embarcadero,San Francisco,CA,94105-1216,BUS,06
 -122.395187000079943,37.793906999708327,720,SFF,"San Francisco (Financial), California",5 Embarcadero Center,Corner of California & Drumm Streets,San Francisco,CA,94111-4800,BUS,06
@@ -575,15 +582,18 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -122.406318999921893,37.784760000573613,723,SFS,"San Francisco (Shopping), California",835 Market Street,Westfield San Francisco Centre,San Francisco,CA,94103-1901,BUS,06
 -122.408920000257751,37.808593999813297,724,SFW,"San Francisco (Wharf), California",Beach St. & The Embarcadero,Pier 39 - Fisherman's Wharf,San Francisco,CA,94133,BUS,06
 -93.745003126193296,32.516654351517161,725,SHR,"Shreveport, Louisiana",451 Clyde Fant Parkway,"Eldorado Casino Hotel, bus lobby",Shreveport,LA,71101-3206,BUS,22
--118.693717999985665,34.269946999854199,726,SIM,"Simi Valley, California",5050 Los Angeles Avenue,Amtrak/Metrolink Station,Simi Valley,CA,93063,RAIL,06
--121.901206999903081,37.331070000380294,727,SJC,"San Jose, California",65 Cahill Street,,San Jose,CA,95110,RAIL,06
+-118.693717999985665,34.269946999854199,726,OXN,SIM,VNC,"Simi Valley, California",5050 Los Angeles Avenue,Amtrak/Metrolink Station,Simi Valley,CA,93063,RAIL,06
+-118.693717999985665,34.269946999854199,726,VNC,SIM,OXN,"Simi Valley, California",5050 Los Angeles Avenue,Amtrak/Metrolink Station,Simi Valley,CA,93063,RAIL,06
+-121.901206999903081,37.331070000380294,727,OKJ,SJC,SNS,"San Jose, California",65 Cahill Street,,San Jose,CA,95110,RAIL,06
+-121.901206999903081,37.331070000380294,727,SNS,SJC,OKJ,"San Jose, California",65 Cahill Street,,San Jose,CA,95110,RAIL,06
 -121.284270999806779,37.946011000207534,729,SKN,"Stockton (711-718), California",735 S. San Joaquin St,,Stockton,CA,95203,RAIL,06
 -121.278988999942385,37.956667999728438,730,SKT,"Stockton (ACE, 701-704), California",949 East Channel St.,Robert J. Cabral Station,Stockton,CA,95202,RAIL,06
 -121.359283000210269,47.711525000078723,731,SKW,"Skykomish, Washington",90000 Highway 2,(westbound - Sky Chalet),Skykomish,WA,98288,BUS,53
 -119.941162000126155,38.95949599954082,735,SLH,"Stateline Transit Center, California",4114 Lake Tahoe Blvd,Transportation Center,Stateline,CA,96150,BUS,06
 -123.026236999937566,44.932170999991683,736,PDX,SLM,ALY,"Salem, Oregon",500 13th Street SE,,Salem,OR,97301,RAIL,41
 -123.026236999937566,44.932170999991683,736,ALY,SLM,PDX,"Salem, Oregon",500 13th Street SE,,Salem,OR,97301,RAIL,41
--120.653946000107794,35.277416000548044,737,SLO,"San Luis Obispo, California",1011 Railroad Avenue,,San Luis Obispo,CA,93401-4449,RAIL,06
+-120.653946000107794,35.277416000548044,737,PRB,SLO,SBA,"San Luis Obispo, California",1011 Railroad Avenue,,San Luis Obispo,CA,93401-4449,RAIL,06
+-120.653946000107794,35.277416000548044,737,SBA,SLO,PRB,"San Luis Obispo, California",1011 Railroad Avenue,,San Luis Obispo,CA,93401-4449,RAIL,06
 -120.65184799958547,35.292580000166936,738,SLP,"San Luis Obispo (Cal Poly), California",Grand Avenue & Deer Road,Vista Grande Restaurant,San Luis Obispo,CA,93401,BUS,06
 -120.002220000052944,38.91470699982824,740,SLT,"South Lake Tahoe, California",1000 Emerald Bay Road,South Y Transit Center,South Lake Tahoe,CA,96151,BUS,06
 -120.137305999971886,34.595947000353817,741,SLV,"Solvang, California",1630 Mission Drive,,Solvang,CA,93463,BUS,06
@@ -599,7 +609,8 @@ X,Y,OBJECTID,STNCODE,STNNAME,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFIPS
 -102.399054999888278,30.140098999469274,749,ALP,SND,DRT,"Sanderson, Texas",201 West Downey Street,,Sanderson,TX,79848,RAIL,48
 
 -117.619011000357375,33.419159000287664,750,SNP,"San Clemente Pier, California",Avenida del Mar and Avenida Victoria,(615 Avenida Victoria) at the San Clemente Pier,San Clemente,CA,92672,RAIL,06
--121.656188999922392,36.67936299940294,751,SNS,"Salinas, California",Station Place and Railroad Avenue,(30 Station Place),Salinas,CA,93901-1432,RAIL,06
+-121.656188999922392,36.67936299940294,751,SJC,SNS,PRB,"Salinas, California",Station Place and Railroad Avenue,(30 Station Place),Salinas,CA,93901-1432,RAIL,06
+-121.656188999922392,36.67936299940294,751,PRB,SNS,SJC,"Salinas, California",Station Place and Railroad Avenue,(30 Station Place),Salinas,CA,93901-1432,RAIL,06
 -120.370789000412003,39.323589000332163,753,SOD,"Soda Springs, California",22002 Donner Pass Rd.,Donner Summit Lodge,Soda Springs,CA,95728,BUS,06
 -117.270072999669139,32.992054000291944,754,SOL,"Solana Beach, California",105 North Cedros Avenue,Solana Beach Transit Center,Solana Beach,CA,92075,RAIL,06
 -118.276603999375027,33.748416999944652,757,SPD,"San Pedro (Catalina Terminal), California","1st Stop:  N.Front & Swinford, Berth 95, Catalina",Catalina Terminal (Air and Sea),San Pedro,CA,90731,BUS,06
