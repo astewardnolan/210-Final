@@ -20,10 +20,9 @@ class Main{
 
         while(file.hasNextLine()){
             String[] data = file.nextLine().split(",");
-            allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3]));
+            allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3],data[4],data[5]));
         }
         
-       
         System.out.println(allStations);
 
     }
