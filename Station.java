@@ -1,15 +1,17 @@
 public class Station {
 
-    int xCord;
-    int yCord;
+    double xCord;
+    double yCord;
     String code;
-    String location;
     
-    public Station (int x, int y, String c, String l){
+    public Station (double x, double y, String c){
         xCord=x;
         yCord=y;
         code=c;
-        location=l;
+    }
+
+    public String toString(){
+        return "X cord is: "+xCord+", y cord is: "+yCord+", station code is: "+code;
     }
 
 }
