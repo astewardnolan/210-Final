@@ -1,6 +1,6 @@
 ## Deliverable Goals (14 pts)
 
-_____ 2 pts: Dataset is selected and fully described in `data_description.txt`
+__YAZ___ 2 pts: Dataset is selected and fully described in `data_description.txt`
 
 _____ 2 pts: Journal includes at least one entry per phase and describes the design decisions made and reasons for making them
 
