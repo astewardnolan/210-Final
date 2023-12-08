@@ -1,9 +1,12 @@
 import java.io.*;
 import java.util.*;
+import com.google.common.graph.*;
 
 class Main{
 
     static HashSet<Station> allStations = new HashSet<Station>();
+    MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
+
 
     public static void main (String args[]){
 
@@ -24,6 +27,8 @@ class Main{
         }
         
         System.out.println(allStations);
+
+
 
     }
 
