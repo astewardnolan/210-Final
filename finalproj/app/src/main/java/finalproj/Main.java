@@ -14,18 +14,25 @@ class Main{
         Scanner file = null;
         System.out.println("amtrack.txt");
         try {
+            System.out.println("file found");
             file = new Scanner(new File("data/amtrack.txt"));
             
         }catch(FileNotFoundException e){
+            
             System.err.println("Cannot locate file.");
             System.exit(-1);
         }
         file.nextLine();
 
         while(file.hasNextLine()){
+              
             String[] data = file.nextLine().split(",");
-            allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3],data[4],data[5]));
-        }
+            
+            if(data[0].length()>0 )  {
+                allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3],data[4],data[5]));
+            }
+         
+    }
         
         System.out.println(allStations);
 
