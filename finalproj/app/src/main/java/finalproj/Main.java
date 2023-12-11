@@ -54,6 +54,8 @@ class Main{
 
         //GraphDisplay slay = new GraphDisplay(routes);
 
+
+        //for some reason scanner is messing this all up!!!!
         Scanner scan = new Scanner(System.in);
           System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
           String from = scan.nextLine();
