@@ -1,4 +1,4 @@
-package finalproj;
+
 import java.io.*;
 import java.util.*;
 import com.google.common.graph.*;
@@ -6,17 +6,16 @@ import com.google.common.graph.*;
 class Main{
 
    static ArrayList<Station> allStations = new ArrayList<Station>();
-   static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
 
     //MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
 
     public static void main (String args[]){
 
         //is there a reason this is Integer, Double?
-       // MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
+        MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
         
         Scanner file = null;
-        //System.out.println("amtrack.txt");
+        System.out.println("amtrack.txt");
         String[] amtrakFiles = new String[]{"CHItoLAX.txt","CHItoNOL.txt","LAXtoCHI","LAXtoSEA.txt","NOLtoCHI.txt","SABtoWAS","SEAtoLAX.txt","WAStoSAB"};
         try {
             System.out.println("file found");
@@ -57,15 +56,13 @@ class Main{
 
 
         //for some reason scanner is messing this all up!!!!
-        // Scanner scan = new Scanner(System.in);
-        //   System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
-        //   String from = scan.nextLine();
-        //   System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
-        //   String destination = scan.nextLine();
+        Scanner scan = new Scanner(System.in);
+          System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
+          String from = scan.nextLine();
+          System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
+          String destination = scan.nextLine();
 
-        //GraphDisplay slay = new GraphDisplay(routes);
-        Station ugh = allStations.get(0);
-        depthFirstTraversal(ugh,"PON");
+        GraphDisplay slay = new GraphDisplay(routes);
 
     }
 
@@ -80,30 +77,6 @@ class Main{
         int d= (int) Math.floor(54.6*distance);
         return d+" miles";
       }
-
-      public static void depthFirstTraversal(Station start, String destination){
-        HashSet<Station> seen = new HashSet<Station>();
-        seen.add(start);
-        depthFirstTraversal(destination,start,seen, routes);
-      }
-
-      private static void depthFirstTraversal(String destination, Station node, HashSet<Station>seen, ValueGraph<Station, String> r){
-        //visit(node);
-        for(Station nb:r.successors(node)){
-          if(nb.getCurrentStation().equals(destination)){
-            System.out.println(nb.getCurrentStation());
-            System.out.print("end");
-            break;
-          }
-
-          if(!seen.contains(nb)){
-            seen.add(nb);
-            depthFirstTraversal(destination, nb,seen,r);
-          }
-        }
-      }
-
-      
 
 
 
