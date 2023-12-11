@@ -63,7 +63,7 @@ class Main{
         double xLen = Math.abs(x2-x1);
         double yLen = Math.abs(y2-y1);
         double distance = Math.sqrt(Math.pow(xLen,2)+Math.pow(yLen,2));
-        return 54.6*distance;
+        return Math.floor(54.6*distance);
       }
 
 
