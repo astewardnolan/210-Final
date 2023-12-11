@@ -55,13 +55,12 @@ class Main{
 
         
 
-
-        //for some reason scanner is messing this all up!!!!
-        // Scanner scan = new Scanner(System.in);
-        //   System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
-        //   String from = scan.nextLine();
-        //   System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
-        //   String destination = scan.nextLine();
+        //for some reason scanner is messing this all up!!!! WHYYYY :(())
+        Scanner scan = new Scanner(System.in);
+        System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
+        String from = scan.nextLine();
+        System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
+        String destination = scan.nextLine();
 
         //GraphDisplay slay = new GraphDisplay(routes);
         Station ugh = allStations.get(0);

@@ -10,6 +10,15 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 }
+// run{
+// tasks.getByName("run", JavaExec::class) {
+//     standardInput = System.`in`
+//  }
+// }
+//NOT WORKING :(((())))
+// run {
+//     standardInput = System.in
+// }
 
 repositories {
     // Use Maven Central for resolving dependencies.
