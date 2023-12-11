@@ -52,11 +52,11 @@ class Main{
             }
           }
 
-          Scanner scan = new Scanner(System.in);
-          System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
-          String from = scan.nextLine();
-          System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
-          String destination = scan.nextLine();
+        //   Scanner scan = new Scanner(System.in);
+        //   System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
+        //   String from = scan.nextLine();
+        //   System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
+        //   String destination = scan.nextLine();
 
 
           GraphDisplay slay = new GraphDisplay(routes);
