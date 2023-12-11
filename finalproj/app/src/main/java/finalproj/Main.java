@@ -61,10 +61,7 @@ class Main{
           GraphDisplay slay = new GraphDisplay(routes);
     }
 
-    public void depthFirstTraversal(Station start){
-
-    }
-
+    
     /**
      * calcualtes distance between two end points using pythagorean theorem
      */
