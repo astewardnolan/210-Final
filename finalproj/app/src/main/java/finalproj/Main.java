@@ -52,7 +52,7 @@ class Main{
             }
           }
 
-        GraphDisplay slay = new GraphDisplay(routes);
+        
 
 
         //for some reason scanner is messing this all up!!!!
@@ -62,7 +62,7 @@ class Main{
           System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
           String destination = scan.nextLine();
 
-
+        GraphDisplay slay = new GraphDisplay(routes);
 
     }
 
