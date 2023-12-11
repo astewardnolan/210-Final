@@ -53,6 +53,7 @@ class Main{
           }
 
 
+          GraphDisplay slay = new GraphDisplay(routes);
     }
 
     /**
