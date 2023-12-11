@@ -12,7 +12,7 @@ class Main{
     public static void main (String args[]){
 
         //is there a reason this is Integer, Double?
-        MutableValueGraph<String, Double> routes = ValueGraphBuilder.directed().build();
+        MutableValueGraph<String, String> routes = ValueGraphBuilder.directed().build();
         
         Scanner file = null;
         System.out.println("amtrack.txt");
@@ -59,11 +59,12 @@ class Main{
     /**
      * calcualtes distance between two end points using pythagorean theorem
      */
-    public static double pyth (double x1, double y1, double x2, double y2){
+    public static String pyth (double x1, double y1, double x2, double y2){
         double xLen = Math.abs(x2-x1);
         double yLen = Math.abs(y2-y1);
         double distance = Math.sqrt(Math.pow(xLen,2)+Math.pow(yLen,2));
-        return Math.floor(54.6*distance);
+        int d= (int) Math.floor(54.6*distance);
+        return d+" miles";
       }
 
 
