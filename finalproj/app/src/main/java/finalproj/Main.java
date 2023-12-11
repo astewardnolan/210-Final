@@ -12,7 +12,7 @@ class Main{
     public static void main (String args[]){
 
         //is there a reason this is Integer, Double?
-        MutableValueGraph<String, String> routes = ValueGraphBuilder.directed().build();
+        MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
         
         Scanner file = null;
         System.out.println("amtrack.txt");
@@ -46,9 +46,8 @@ class Main{
         //graph building stuff here!
         for(int i=0;i<allStations.size();i++){
             if(!allStations.get(i).getNextStation().equals("END")){
-                routes.addNode(allStations.get(i).getCurrentStation());
               //can you add edges without nodes 
-              routes.putEdgeValue(allStations.get(i).getCurrentStation(),allStations.get(i+1).getCurrentStation(), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
+              routes.putEdgeValue(allStations.get(i),allStations.get(i+1), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
             }
           }
 
@@ -60,6 +59,10 @@ class Main{
 
 
           GraphDisplay slay = new GraphDisplay(routes);
+    }
+
+    public void depthFirstTraversal(Station start){
+
     }
 
     /**
