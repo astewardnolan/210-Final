@@ -66,7 +66,7 @@ class Main{
         //GraphDisplay slay = new GraphDisplay(routes);
         Station ugh = allStations.get(0);
         depthFirstTraversal(ugh,"PON");
-        System.out.println("hi");
+        //System.out.println("hi");
 
     }
 
