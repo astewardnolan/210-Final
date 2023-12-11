@@ -52,7 +52,6 @@ class Main{
               routes.putEdgeValue(allStations.get(i),allStations.get(i+1), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
             }
           }
-
         
 
         //for some reason scanner is messing this all up!!!! WHYYYY :(())
@@ -66,7 +65,7 @@ class Main{
         Station ugh = allStations.get(0);
         depthFirstTraversal(ugh,"PON");
         //System.out.println("hi");
-
+     
     }
 
     
