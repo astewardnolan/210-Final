@@ -52,7 +52,7 @@ class Main{
             }
           }
 
-        //GraphDisplay slay = new GraphDisplay(routes);
+        GraphDisplay slay = new GraphDisplay(routes);
 
 
         //for some reason scanner is messing this all up!!!!
