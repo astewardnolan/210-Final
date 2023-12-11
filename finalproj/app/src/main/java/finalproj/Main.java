@@ -10,6 +10,7 @@ class Main{
 
     public static void main (String args[]){
 
+        //is there a reason this is Integer, Double?
         MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
         
         Scanner file = null;
@@ -42,7 +43,7 @@ class Main{
 
         //graph building stuff here!
         for(Station station: allStations){
-            //weightedGraph.addNode(destinationStation);
+            weightedGraph.addNode(station.xCord);
             
         }
 
