@@ -36,6 +36,7 @@ class Main{
                 allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3],data[4],data[5]));
             }  
     }
+    file.close();
         System.out.println(allStations);
 
         //weightedGraph.addNode(3);
