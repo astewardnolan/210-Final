@@ -16,6 +16,26 @@ public class Station {
         nextStation = next;
     }
 
+    public double getx(){
+        return xCord;
+    }
+
+    public double gety(){
+        return yCord;
+    }
+
+    public String getPrevStation(){
+        return prevStation;
+    }
+
+    public String getCurrentStation(){
+        return destinationStation;
+    }
+
+    public String getNextStation(){
+        return nextStation;
+    }
+
     public String toString(){
         return "X cord is: "+xCord+", y cord is: "+yCord+", train is coming from "+prevStation+" and going to "+destinationStation;
     }
