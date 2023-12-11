@@ -1,5 +1,4 @@
 package finalproj;
-
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
@@ -20,23 +19,29 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GraphDisplay extends JComponent implements ActionListener {
   // only one of the following three should be active
   /** The Graph to display */
-  Graph<Object> graph;
+  private Graph graph;
   /** The ValueGraph to display */
-  ValueGraph<Object,Object> vgraph;
+  private ValueGraph vgraph;
   /** The Network to display */
-  Network<Object,Object> net;
+  private Network net;
+
+  /** Is the graph directed? */
+  private boolean isDirected;
 
   /** Map graph objects to locations */
-  HashMap<Object,Point> locMap;
+  private HashMap<Object,Point> locMap;
   
   /** Map graph objects to colors */
-  HashMap<Object,Color> colorMap;
+  private HashMap<Object,Color> colorMap;
 
   /** Map graph objects to labels */
-  HashMap<Object,String> labelMap;
+  private HashMap<Object,String> labelMap;
 
   /** Map graph objects to notes */
-  HashMap<Object,String> noteMap;
+  private HashMap<Object,String> noteMap;
+
+  /** Map graph objects to notes */
+  private HashMap<Object,ActionListener> callMap;
   
   /** Window the graph will appear in */
   private JFrame frame;
@@ -45,10 +50,10 @@ public class GraphDisplay extends JComponent implements ActionListener {
   private Timer timer;
   
   /** Location of current drag */
-  Point dragPoint = null;
+  private Point dragPoint = null;
 
   /** Remembers node where last mousedown event occurred */
-  Object activeNode;
+  private Object activeNode;
 
   /** Size of canvas */
   public static final Dimension CANVAS_SIZE = new Dimension(500, 300);
@@ -63,13 +68,13 @@ public class GraphDisplay extends JComponent implements ActionListener {
   public static final Color DEFAULT_NODE_COLOR = new Color(192, 192, 255);
 
   /** default color of edges */
-  public static final Color DEFAULT_EDGE_COLOR = Color.BLUE;
+  public static final Color DEFAULT_EDGE_COLOR = Color.BLACK;
 
   /** default color of edges */
   public Point labelOffset = new Point(0,24);
 
   /** default color of edges */
-  public Point noteOffset = new Point(NODE_RADIUS,-NODE_RADIUS);
+  public Point noteOffset = new Point(0,-30-NODE_RADIUS);
   
   /** used to draw arrows */
   private static final AffineTransform tx = new AffineTransform();
@@ -86,23 +91,47 @@ public class GraphDisplay extends JComponent implements ActionListener {
     arrowHead.addPoint( 4,-4);
   }
 
+  // Note:  because we want this file to work with any sort of graph,
+  // we are using the raw Graph type instead of a generic version.
+  // This means that Java's type system cannot check the type safety of the code.
+  // To prevent a proliferation of warnings, we have liberally sprinkled suppression
+  // directives throughout the code.  Normally this is not a good idea, unless
+  // you have a very good reason and know exactly why you are doing it.  ;)
   /** Constructor starts with empty graph */
-  public GraphDisplay(Object g) {
+  @SuppressWarnings("unchecked")
+  public GraphDisplay(Graph<?> g) {
     super();
-    if (g instanceof Graph) {
-      this.graph = (Graph)g;
-    } else if (g instanceof ValueGraph) {
-       this.vgraph = (ValueGraph)g;
-    } else if (g instanceof Network) {
-      this.net = (Network)g;
-    } else {
-      throw new RuntimeException("Attempt to display non-graph object: "+g);
-    }
+    this.graph = g;
+    isDirected = g.isDirected();
+    commonSetup();
+  }
+
+  /** Constructor starts with empty graph */
+  @SuppressWarnings("unchecked")
+  public GraphDisplay(ValueGraph<?,?> g) {
+    super();
+    this.vgraph = g;
+    isDirected = g.isDirected();
+    commonSetup();
+}
+
+  /** Constructor starts with empty graph */
+  @SuppressWarnings("unchecked")
+  public GraphDisplay(Network<?,?> g) {
+    super();
+    this.net = g;
+    isDirected = g.isDirected();
+    commonSetup();
+  }
+
+  /** Method to finish the common setup for all three graph types */
+  private void commonSetup() {
     locMap = new HashMap<Object,Point>();
     assignLocations();
     colorMap = new HashMap<Object,Color>();
     labelMap = new HashMap<Object,String>();
     noteMap = new HashMap<Object,String>();
+    callMap = new HashMap<Object,ActionListener>();
 
     setMinimumSize(CANVAS_SIZE);
     setPreferredSize(CANVAS_SIZE);
@@ -184,6 +213,11 @@ public class GraphDisplay extends JComponent implements ActionListener {
     locMap.put(obj,loc);
   }
 
+  /** Sets the location of an edge between nodes */
+  public void setLoc(Object t, Object h, Point loc) {
+    locMap.put(getEdgeBetween(t,h),loc);
+  }
+  
   /** Sets multiple node locations at once */
   public void setLocs(HashMap<?,? extends Point> locs) {
     locMap.putAll(locs);
@@ -202,11 +236,16 @@ public class GraphDisplay extends JComponent implements ActionListener {
     return c;
   }
 
+  /** Sets the color of an edge between nodes */
+  public void setColor(Object t, Object h, Color c) {
+    colorMap.put(getEdgeBetween(t,h),c);
+  }
+
   /** Sets the color of a given graph element */
   public void setColor(Object obj, Color c) {
     colorMap.put(obj,c);
   }
-
+  
   /** Sets multiple colors at once */
   public void setColors(HashMap<?,? extends Color> colors) {
     colorMap.putAll(colors);
@@ -229,6 +268,11 @@ public class GraphDisplay extends JComponent implements ActionListener {
     labelMap.put(obj,lbl);
   }
 
+  /** Sets the label of an edge between nodes */
+  public void setLabel(Object t, Object h, String lbl) {
+    labelMap.put(getEdgeBetween(t,h),lbl);
+  }
+  
   /** Sets multiple labels at once */
   public void setLabels(HashMap<?,? extends String> labels) {
     labelMap.putAll(labels);
@@ -248,9 +292,30 @@ public class GraphDisplay extends JComponent implements ActionListener {
     noteMap.put(obj,note);
   }
 
+  /** Sets the note on an edge between nodes */
+  public void setNote(Object t, Object h, String note) {
+    noteMap.put(getEdgeBetween(t,h),note);
+  }
+  
   /** Sets multiple labels at once */
   public void setNotes(HashMap<?,? extends String> notes) {
     noteMap.putAll(notes);
+  }
+
+  /** Returns the callback object on a given graph element */
+  public ActionListener getCallback(Object obj) {
+    ActionListener call = callMap.get(obj);
+    return call;
+  }
+
+  /** Sets the callback on a given graph element */
+  public void setCallback(Object obj, ActionListener call) {
+    callMap.put(obj,call);
+  }
+
+  /** Sets multiple labels at once */
+  public void setCallbacks(HashMap<?,? extends ActionListener> calls) {
+    callMap.putAll(calls);
   }
   
   /** Reset colors to default */
@@ -268,6 +333,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
   }
 
   /** returns the node set */
+  @SuppressWarnings("unchecked")
   public Set<Object> getNodeSet() {
     Set<Object> nodes;
     if (graph != null) {
@@ -283,11 +349,13 @@ public class GraphDisplay extends JComponent implements ActionListener {
   }
 
   /** returns a representation of the edge between two nodes */
+  @SuppressWarnings("unchecked")
   public Object getEdgeBetween(Object n1, Object n2) {
     Object e = null;
     if (((graph != null)&&graph.hasEdgeConnecting(n1,n2))
         ||((vgraph != null)&&vgraph.hasEdgeConnecting(n1,n2))) {
-      if (((graph != null)&&graph.isDirected())||vgraph.isDirected()) {
+      if (((graph != null)&&graph.isDirected())
+          ||((vgraph != null)&&vgraph.isDirected())) {
         e = new Pair<Object,Object>(n1,n2);
       } else {
         e = new Diset<Object>(n1,n2);
@@ -301,6 +369,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
   }
   
   /** returns the edge set */
+  @SuppressWarnings("unchecked")
   public Set<Object> getEdgeSet() {
     Set<Object> edges = new HashSet<Object>();
     Set<Object> nodes = getNodeSet();
@@ -325,12 +394,13 @@ public class GraphDisplay extends JComponent implements ActionListener {
   }
   
   /** returns the node set */
+  @SuppressWarnings("unchecked")
   public Set getAdjacentNodes(Object n) {
     Set edges;
     if (graph != null) {
-      edges = graph.adjacentNodes(n);
+      edges = graph.successors(n);
     }else if (vgraph != null) {
-      edges = vgraph.adjacentNodes(n);
+      edges = vgraph.successors(n);
     }else if (net != null) {
       edges = net.successors(n);
     } else {
@@ -343,16 +413,17 @@ public class GraphDisplay extends JComponent implements ActionListener {
   * see https://stackoverflow.com/questions/2027613/how-to-draw-a-directed-arrow-line-in-java
   */
   private void drawArrow(Point p1, Point p2, Graphics g) {
-    g.drawLine(p1.x,p1.y,p2.x,p2.y);
+    Graphics2D g2 = (Graphics2D) g.create();
+    g2.setStroke(new BasicStroke(2));
+    g2.drawLine(p1.x,p1.y,p2.x,p2.y);
     tx.setToIdentity();
     double angle = Math.atan2(p2.y-p1.y, p2.x-p1.x);
     tx.translate(p2.x-ARROW_RADIUS*Math.cos(angle),p2.y-ARROW_RADIUS*Math.sin(angle));
     tx.rotate((angle-Math.PI/2d));  
 
-    Graphics2D g2d = (Graphics2D) g.create();
-    g2d.setTransform(tx);   
-    g2d.fill(arrowHead);
-    g2d.dispose();
+    g2.setTransform(tx);   
+    g2.fill(arrowHead);
+    g2.dispose();
   }
 
   /** for drawing rotated text
@@ -387,6 +458,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
   
   /** Draws the graph in a window */
   public void paintComponent(Graphics g) {
+    super.paintComponent(g);
     //System.out.println("Entering paintComponent.");
     
     // get node collection (varies depending on graph type)
@@ -394,16 +466,27 @@ public class GraphDisplay extends JComponent implements ActionListener {
     //System.out.println("Nodes: "+nodes);
     
     // draw edges
+    Graphics2D g2 = (Graphics2D) g.create();
     for (Object n : nodes) {
       Point loc = getLoc(n);
       for (Object e : getAdjacentNodes(n)) {
         Point dloc = getLoc(e);
-        drawArrow(loc,dloc,g);
+        Object edge = getEdgeBetween(n,e);
+        g2.setColor(getColor(edge));
+        //System.out.println(getColor(edge)+" "+edge);
+        if (isDirected) {
+          drawArrow(loc,dloc,g);
+        } else {
+          //Graphics2D g2 = (Graphics2D) g.create();
+          g2.setStroke(new BasicStroke(2));
+          g2.drawLine(loc.x,loc.y,dloc.x,dloc.y);
+        }
 
         // add text
-        rotateText(getLabel(getEdgeBetween(n,e)),loc,dloc,g);
+        rotateText(getLabel(edge),loc,dloc,g);
       }
     }
+    g2.dispose();
 
     // draw nodes
     for (Object n : nodes) {
@@ -418,12 +501,14 @@ public class GraphDisplay extends JComponent implements ActionListener {
       Rectangle2D sbound = g.getFontMetrics().getStringBounds(label, g);
       int descent = g.getFontMetrics().getDescent();
       int ascent = g.getFontMetrics().getAscent();
+      g.setColor(Color.BLACK);
       g.drawString(label, pos.x - (int) sbound.getWidth() / 2 + labelOffset.x,
               pos.y + (int) (sbound.getHeight()) / 2 - descent + labelOffset.y);
       String note = getNote(n);
       Rectangle2D nbound = g.getFontMetrics().getStringBounds(note, g);
       descent = g.getFontMetrics().getDescent();
       ascent = g.getFontMetrics().getAscent();
+      g.setColor(Color.RED.darker());
       g.drawString(note, pos.x - (int) nbound.getWidth() / 2 + noteOffset.x,
               pos.y + NODE_RADIUS + (int) (nbound.getHeight()) - descent + noteOffset.y);
     }
@@ -436,6 +521,15 @@ public class GraphDisplay extends JComponent implements ActionListener {
 
   /** listener class for drag events */
   private class DragListener extends MouseAdapter {
+    /** mouse click event handler */
+    public void mouseClicked(MouseEvent e) {
+      Object obj = getNode(e.getX(),e.getY());
+      ActionListener callback = getCallback(obj);
+      if (callback != null) {
+        callback.actionPerformed(new ActionEvent(obj,e.getID(),"Click"));      
+      }
+    }
+    
     /** mouse press event handler */
     public void mousePressed(MouseEvent e) {
       dragPoint = new Point(e.getX(),e.getY());
@@ -503,6 +597,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
 
     /** return an appropriate default string */
     @Override
+    @SuppressWarnings("unchecked")
     public String toString() {
       String result;
       if ((vgraph != null)&&vgraph.hasEdgeConnecting(p1,p2)) {
@@ -538,7 +633,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
           return false;
       if (getClass() != o.getClass()) // type check and cast
           return false;
-      Pair p = (Pair) o;
+      Diset p = (Diset) o;
       return (Objects.equals(p1, p.p1) && Objects.equals(p2, p.p2))
         ||(Objects.equals(p2, p.p1) && Objects.equals(p1, p.p2)); // field comparison
     }
@@ -552,6 +647,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
 
     /** return an appropriate default string */
     @Override
+    @SuppressWarnings("unchecked")
     public String toString() {
       String result;
       if ((vgraph != null)&&vgraph.hasEdgeConnecting(p1,p2)) {
