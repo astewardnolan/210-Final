@@ -37,7 +37,7 @@ public class Station {
     }
 
     public String toString(){
-        return "X cord is: "+xCord+", y cord is: "+yCord+", train is coming from "+prevStation+" and going to "+destinationStation;
+        return destinationStation;
     }
 
 }
