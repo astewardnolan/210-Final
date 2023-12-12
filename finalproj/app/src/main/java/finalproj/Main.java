@@ -15,6 +15,7 @@ class Main{
    static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
    static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
    static boolean validRoute = false;
+   static ArrayList<Station> pathCopy= new ArrayList<Station>();
 
     //MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
 
@@ -81,14 +82,13 @@ class Main{
 
   
         Station startStation = findStation(from, allStations);
-        if(!startStation.equals(null)){
+        if(startStation!=(null)){
           System.out.println("station station is "+startStation);
 
-          //hardcoded rn!!!!
           depthFirstTraversal(startStation, destination);
           GraphDisplay slay = new GraphDisplay(correctRoutes);
         }
-        else if (startStation.equals(null)){
+        else if (startStation==(null)){
          System.out.println("You start station does not exist :( Sad bad no good)");
         }
   
@@ -115,8 +115,9 @@ class Main{
         return d+" miles";
       }
 
-      public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
+      public static void depthFirstTraversal(Station start, String destination){
         System.out.println("HI");
+        
         ArrayList<Station> seen = new ArrayList<Station>();
         //routes.setColor(start,Color.PINK);
         seen.add(start);
@@ -127,16 +128,19 @@ class Main{
           System.out.println("No route was found between the two stations");
         }
         else{
-          for(int i=0;i<seen.size()-1;i++){
-            correctRoutes.putEdgeValue(seen.get(i),seen.get(i+1), pyth(seen.get(i).getx(),seen.get(i).gety(),seen.get(i+1).getx(),seen.get(i+1).gety()));
+          for(int i=0;i<pathCopy.size()-1;i++){
+            correctRoutes.putEdgeValue(pathCopy.get(i),pathCopy.get(i+1), pyth(pathCopy.get(i).getx(),pathCopy.get(i).gety(),pathCopy.get(i+1).getx(),pathCopy.get(i+1).gety()));
           }
         }
 
       }
 
-      private static ArrayList<Station> depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
+      public static ArrayList<Station> depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
         //visit(node);
+        ArrayList<Station> path= new ArrayList<Station>();
         if(destination.equals(node.getCurrentStation())){
+          pathCopy=path;
+          return path;
           //mkae arraylist, put current node in it
         }
         System.out.println("in second DFT method and destination is "+destination);
@@ -151,6 +155,7 @@ class Main{
           // }
           if(!seen.contains(nb)){
             System.out.println("not yet seen");
+            path.add(nb);
             seen.add(nb);
             depthFirstTraversal(destination, nb,seen,r);
           }

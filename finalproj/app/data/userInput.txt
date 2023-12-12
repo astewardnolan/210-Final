@@ -1,4 +1,4 @@
 Enter your Start Destination:
-ABC
+CHI
 Enter your End Destination:
 PON  
