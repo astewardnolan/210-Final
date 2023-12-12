@@ -79,19 +79,19 @@ class Main{
         System.out.println("destination station is "+destination);
 
 
+  
         Station startStation = findStation(from, allStations);
-        System.out.println("station station is "+startStation);
+        if(!startStation.equals(null)){
+          System.out.println("station station is "+startStation);
 
-        //hardcoded rn!!!!
-        depthFirstTraversal(startStation, destination);
-
-
-
-        GraphDisplay slay = new GraphDisplay(correctRoutes);
-        // Station ugh = allStations.get(0);
-        // depthFirstTraversal(ugh,"PON");
-        // //System.out.println("hi");
-     
+          //hardcoded rn!!!!
+          depthFirstTraversal(startStation, destination);
+          GraphDisplay slay = new GraphDisplay(correctRoutes);
+        }
+        else if (startStation.equals(null)){
+         System.out.println("You start station does not exist :( Sad bad no good)");
+        }
+  
     }
 
     public static Station findStation(String stationName, ArrayList<Station> ar){
@@ -100,8 +100,9 @@ class Main{
           return ar.get(i);
         }
       }
-      //test this....
-      throw new RuntimeErrorException(null, "The station you entered is not valid");
+      System.out.println("The station you entered is not valid");
+      return null;
+      //throw new RuntimeErrorException(null, "The station you entered is not valid");
     }
     /**
      * calcualtes distance between two end points using pythagorean theorem
