@@ -1,6 +1,9 @@
 package finalproj;
 import java.io.*;
 import java.util.*;
+
+import javax.management.RuntimeErrorException;
+
 import com.google.common.graph.*;
 
 class Main{
@@ -40,10 +43,6 @@ class Main{
     file.close();
         System.out.println(allStations);
 
-        //weightedGraph.addNode(3);
-        //weightedGraph.addNode(2);
-        
-        //System.out.println(weightedGraph);
 
         //graph building stuff here!
         for(int i=0;i<allStations.size();i++){
@@ -57,7 +56,7 @@ class Main{
         //System.out.println("amtrack.txt");
         try {
             System.out.println("file found");
-            file = new Scanner(new File("data/userInput.txt"));
+            userInput = new Scanner(new File("data/userInput.txt"));
             
         }catch(FileNotFoundException e){
             
@@ -70,18 +69,31 @@ class Main{
         String from= userInput.nextLine();
         userInput.nextLine();
         String destination= userInput.nextLine();
-
-        System.out.println(from);
-        System.out.println(destination);
-
-       
+        userInput.close();
 
 
-        //GraphDisplay slay = new GraphDisplay(routes);
-        Station ugh = allStations.get(0);
-        depthFirstTraversal(ugh,"PON");
-        //System.out.println("hi");
+        Station startStation = findStation(from);
+        System.out.println(startStation);
+
+        depthFirstTraversal(startStation, destination);
+
+
+
+        // //GraphDisplay slay = new GraphDisplay(routes);
+        // Station ugh = allStations.get(0);
+        // depthFirstTraversal(ugh,"PON");
+        // //System.out.println("hi");
      
+    }
+
+    public static Station findStation(String stationName){
+      for(int i=0; i<allStations.size();i++){
+        if(allStations.get(i).getCurrentStation().equals(stationName)){
+          return allStations.get(i);
+        }
+      }
+      //test this....
+      throw new RuntimeErrorException(null, "The station you entered is not valid");
     }
     /**
      * calcualtes distance between two end points using pythagorean theorem
@@ -95,8 +107,10 @@ class Main{
       }
 
       public static void depthFirstTraversal(Station start, String destination){
+        System.out.println("HI");
         HashSet<Station> seen = new HashSet<Station>();
         seen.add(start);
+        System.out.println(seen.toString());
         depthFirstTraversal(destination,start,seen, routes);
       }
 
@@ -110,6 +124,7 @@ class Main{
           }
 
           if(!seen.contains(nb)){
+            System.out.println("not yet seen");
             seen.add(nb);
             depthFirstTraversal(destination, nb,seen,r);
           }
