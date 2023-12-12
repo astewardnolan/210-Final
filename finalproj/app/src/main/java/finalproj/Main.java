@@ -116,14 +116,10 @@ class Main{
       }
 
       public static void depthFirstTraversal(Station start, String destination){
-        System.out.println("HI");
-        
         ArrayList<Station> seen = new ArrayList<Station>();
-        //routes.setColor(start,Color.PINK);
         seen.add(start);
-        System.out.println(seen.toString());
         depthFirstTraversal(destination,start,seen, routes);
-        //Station des = findStation(destination,seen);
+ 
         if (!validRoute){
           System.out.println("No route was found between the two stations");
         }
@@ -136,26 +132,23 @@ class Main{
       }
 
       public static ArrayList<Station> depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
-        //visit(node);
         ArrayList<Station> path= new ArrayList<Station>();
+        //where can we make a new arraylist????? im so confused??? we want it to be a new one each time
+        
         if(destination.equals(node.getCurrentStation())){
+          validRoute=true;
           pathCopy=path;
+          System.out.println(path);
           return path;
-          //mkae arraylist, put current node in it
         }
         System.out.println("in second DFT method and destination is "+destination);
         for(Station nb:r.successors(node)){
           System.out.println("current neighbor is "+nb.getCurrentStation());
-          // if(nb.getCurrentStation().equals(destination)){
-          //   seen.add(nb);
-          //   System.out.println(nb.getCurrentStation());
-          //   System.out.print("end");
-          //   validRoute=true;
-          //   break;
-          // }
+  
           if(!seen.contains(nb)){
             System.out.println("not yet seen");
             path.add(nb);
+            System.out.println(path);
             seen.add(nb);
             depthFirstTraversal(destination, nb,seen,r);
           }
