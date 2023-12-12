@@ -53,13 +53,29 @@ class Main{
             }
           }
         
+        Scanner userInput = null;
+        //System.out.println("amtrack.txt");
+        try {
+            System.out.println("file found");
+            file = new Scanner(new File("data/userInput.txt"));
+            
+        }catch(FileNotFoundException e){
+            
+            System.err.println("Cannot locate file.");
+            System.exit(-1);
+        }
 
-        //for some reason scanner is messing this all up!!!! WHYYYY :(())
-        Scanner scan = new Scanner(System.in);
-        System.out.println("What Amtrak station are you leaving from? (enter the 3 letter station code in all caps)");
-        String from = scan.nextLine();
-        System.out.println("What station do you want to get to? (enter the 3 letter station code in all caps)");
-        String destination = scan.nextLine();
+        //SECOND FILE SCANNER FOR USER INPUT
+        userInput.nextLine();
+        String from= userInput.nextLine();
+        userInput.nextLine();
+        String destination= userInput.nextLine();
+
+        System.out.println(from);
+        System.out.println(destination);
+
+       
+
 
         //GraphDisplay slay = new GraphDisplay(routes);
         Station ugh = allStations.get(0);
@@ -67,8 +83,6 @@ class Main{
         //System.out.println("hi");
      
     }
-
-    
     /**
      * calcualtes distance between two end points using pythagorean theorem
      */
