@@ -1,8 +1,11 @@
 package finalproj;
+import java.awt.Color;
 import java.io.*;
 import java.util.*;
 
 import javax.management.RuntimeErrorException;
+
+import org.checkerframework.checker.units.qual.degrees;
 
 import com.google.common.graph.*;
 
@@ -10,6 +13,8 @@ class Main{
 
    static ArrayList<Station> allStations = new ArrayList<Station>();
    static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
+   static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
+   static boolean validRoute = false;
 
     //MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
 
@@ -66,32 +71,33 @@ class Main{
 
         //SECOND FILE SCANNER FOR USER INPUT
         userInput.nextLine();
-        String from= userInput.nextLine();
+        String from= userInput.nextLine().trim();
         userInput.nextLine();
-        String destination= userInput.nextLine();
+        String destination= userInput.nextLine().trim();
         userInput.close();
-        System.out.println(from);
-        System.out.println(destination);
+        System.out.println("from station is "+from);
+        System.out.println("destination station is "+destination);
 
 
-        Station startStation = findStation(from);
-        System.out.println(startStation);
+        Station startStation = findStation(from, allStations);
+        System.out.println("station station is "+startStation);
 
+        //hardcoded rn!!!!
         depthFirstTraversal(startStation, destination);
 
 
 
-        // //GraphDisplay slay = new GraphDisplay(routes);
+        GraphDisplay slay = new GraphDisplay(correctRoutes);
         // Station ugh = allStations.get(0);
         // depthFirstTraversal(ugh,"PON");
         // //System.out.println("hi");
      
     }
 
-    public static Station findStation(String stationName){
-      for(int i=0; i<allStations.size();i++){
-        if(allStations.get(i).getCurrentStation().equals(stationName)){
-          return allStations.get(i);
+    public static Station findStation(String stationName, ArrayList<Station> ar){
+      for(int i=0; i<ar.size();i++){
+        if(ar.get(i).getCurrentStation().equals(stationName)){
+          return ar.get(i);
         }
       }
       //test this....
@@ -110,20 +116,33 @@ class Main{
 
       public static void depthFirstTraversal(Station start, String destination){
         System.out.println("HI");
-        HashSet<Station> seen = new HashSet<Station>();
+        ArrayList<Station> seen = new ArrayList<Station>();
+        //routes.setColor(start,Color.PINK);
         seen.add(start);
         System.out.println(seen.toString());
         depthFirstTraversal(destination,start,seen, routes);
-        System.out.println("No route was found between the two stations");
+        //Station des = findStation(destination,seen);
+        if (!validRoute){
+          System.out.println("No route was found between the two stations");
+        }
+        else{
+          for(int i=0;i<seen.size()-1;i++){
+            correctRoutes.putEdgeValue(seen.get(i),seen.get(i+1), pyth(seen.get(i).getx(),seen.get(i).gety(),seen.get(i+1).getx(),seen.get(i+1).gety()));
+          }
+        }
 
       }
 
-      private static void depthFirstTraversal(String destination, Station node, HashSet<Station>seen, ValueGraph<Station, String> r){
+      private static void depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
         //visit(node);
+        System.out.println("in second DFT method and destination is "+destination);
         for(Station nb:r.successors(node)){
+          System.out.println("current neighbor is "+nb.getCurrentStation());
           if(nb.getCurrentStation().equals(destination)){
+            seen.add(nb);
             System.out.println(nb.getCurrentStation());
             System.out.print("end");
+            validRoute=true;
             break;
           }
 
