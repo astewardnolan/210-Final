@@ -70,6 +70,8 @@ class Main{
         userInput.nextLine();
         String destination= userInput.nextLine();
         userInput.close();
+        System.out.println(from);
+        System.out.println(destination);
 
 
         Station startStation = findStation(from);
@@ -112,6 +114,8 @@ class Main{
         seen.add(start);
         System.out.println(seen.toString());
         depthFirstTraversal(destination,start,seen, routes);
+        System.out.println("No route was found between the two stations");
+
       }
 
       private static void depthFirstTraversal(String destination, Station node, HashSet<Station>seen, ValueGraph<Station, String> r){
