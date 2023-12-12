@@ -115,7 +115,7 @@ class Main{
         return d+" miles";
       }
 
-      public static void depthFirstTraversal(Station start, String destination){
+      public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
         System.out.println("HI");
         ArrayList<Station> seen = new ArrayList<Station>();
         //routes.setColor(start,Color.PINK);
@@ -134,25 +134,28 @@ class Main{
 
       }
 
-      private static void depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
+      private static ArrayList<Station> depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
         //visit(node);
+        if(destination.equals(node.getCurrentStation())){
+          //mkae arraylist, put current node in it
+        }
         System.out.println("in second DFT method and destination is "+destination);
         for(Station nb:r.successors(node)){
           System.out.println("current neighbor is "+nb.getCurrentStation());
-          if(nb.getCurrentStation().equals(destination)){
-            seen.add(nb);
-            System.out.println(nb.getCurrentStation());
-            System.out.print("end");
-            validRoute=true;
-            break;
-          }
-
+          // if(nb.getCurrentStation().equals(destination)){
+          //   seen.add(nb);
+          //   System.out.println(nb.getCurrentStation());
+          //   System.out.print("end");
+          //   validRoute=true;
+          //   break;
+          // }
           if(!seen.contains(nb)){
             System.out.println("not yet seen");
             seen.add(nb);
             depthFirstTraversal(destination, nb,seen,r);
           }
         }
+        return null;
       }
 
       
