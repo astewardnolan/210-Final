@@ -1,5 +1,6 @@
 package finalproj;
 import java.awt.Color;
+import java.awt.Point;
 import java.io.*;
 import java.util.*;
 import javax.management.RuntimeErrorException;
@@ -72,17 +73,21 @@ class Main{
         System.out.println("no route found");
       }
       else{
+        GraphDisplay slay = new GraphDisplay(correctRoutes);
+
         for(int i=0;i<goodPath.size()-1;i++){
           correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
+          slay.setLoc(goodPath.get(i).getCurrentStation(), new Point((int)goodPath.get(i).getx(), (int)goodPath.get(i).gety()));
         }
+        slay.labelOffset = new Point(0,2);
       }
       //dispays graph of correct route from Start station to destination
-      GraphDisplay slay = new GraphDisplay(correctRoutes);
+      // GraphDisplay slay = new GraphDisplay(correctRoutes);
 
       //displays graph of all the possible amtrack routes and nodes
       //GraphDisplay slay2 = new GraphDisplay(routes);
 
-      //Calculates Statistics:
+      //Calculates Statistics: this calculates stats for CORRECT ROUTE, statistics do not apply for all routes
       //number of nodes:
       System.out.println("number of nodes is: "+ goodPath.size());
 
@@ -94,6 +99,11 @@ class Main{
       
       //number of edges: using degree sum formual
       System.out.println("number of edges: "+ ((goodPath.size()*2-2)/2));
+
+      //maximum degree:
+      Collections.sort(degrees);
+      int maxDeg= degrees.get(degrees.size()-1)/2;
+      System.out.println("maximum degree: "+ maxDeg );
       
 
     }
@@ -123,9 +133,7 @@ class Main{
         return d+" miles";
       }
 
-      
-//nick said we should return arraylist 
-      public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
+            public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
         ArrayList<Station> seen = new ArrayList<Station>();
         ArrayList<Station> path= new ArrayList<Station>();
         seen.add(start);
@@ -183,6 +191,8 @@ class Main{
         System.out.println(sum);
         return sum/d.size();
       }
+
+      
 
 
 }
