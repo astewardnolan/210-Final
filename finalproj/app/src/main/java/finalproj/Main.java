@@ -18,7 +18,7 @@ class Main{
         Scanner file = null;
         String[] amtrakFiles = new String[]{"CHItoLAX.txt","CHItoNOL.txt","LAXtoCHI","LAXtoSEA.txt","NOLtoCHI.txt","SABtoWAS","SEAtoLAX.txt","WAStoSAB"};
         try {
-            System.out.println("file found");
+            //System.out.println("file found");
             file = new Scanner(new File("data/CHItoLAX.txt"));
             
         }catch(FileNotFoundException e){
