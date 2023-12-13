@@ -2,31 +2,20 @@ package finalproj;
 import java.awt.Color;
 import java.io.*;
 import java.util.*;
-
 import javax.management.RuntimeErrorException;
-
 import org.checkerframework.checker.units.qual.degrees;
-
 import com.google.common.graph.*;
 
 class Main{
+  static ArrayList<Station> allStations = new ArrayList<Station>();
+  static ArrayList<Station> goodPath = new ArrayList<Station>();
+  static ArrayList<Integer> degrees = new ArrayList<Integer>();
+  static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
+  static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
+  static boolean validRoute = false;
 
-   static ArrayList<Station> allStations = new ArrayList<Station>();
-   static ArrayList<Station> goodPath = new ArrayList<Station>();
-    static ArrayList<Integer> degrees = new ArrayList<Integer>();
-   static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
-   static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
-   static boolean validRoute = false;
-
-    //MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
-
-    public static void main (String args[]){
-
-        //is there a reason this is Integer, Double?
-       // MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
-        
+    public static void main (String args[]){        
         Scanner file = null;
-        //System.out.println("amtrack.txt");
         String[] amtrakFiles = new String[]{"CHItoLAX.txt","CHItoNOL.txt","LAXtoCHI","LAXtoSEA.txt","NOLtoCHI.txt","SABtoWAS","SEAtoLAX.txt","WAStoSAB"};
         try {
             System.out.println("file found");
