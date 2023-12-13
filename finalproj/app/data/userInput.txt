@@ -1,4 +1,4 @@
 Enter your Start Destination:
 BUR
 Enter your End Destination:
-CHI 
+NOL 
