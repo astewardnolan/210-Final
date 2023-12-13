@@ -5,6 +5,8 @@ import java.util.*;
 import javax.management.RuntimeErrorException;
 import org.checkerframework.checker.units.qual.degrees;
 import com.google.common.graph.*;
+import java.math.RoundingMode;  
+import java.text.DecimalFormat;
 
 class Main{
   static ArrayList<Station> allStations = new ArrayList<Station>();
@@ -13,6 +15,7 @@ class Main{
   static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
   static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
   static boolean validRoute = false;
+  private static final DecimalFormat round = new DecimalFormat("0.00"); 
 
   public static void main (String args[]){  
     //Reads in data file of all amtrack routes      
@@ -60,6 +63,7 @@ class Main{
     String destination= userInput.nextLine().trim();
     userInput.close();
     Station startStation = findStation(from, allStations);
+
     //checks to make sure Start station is valid
     if(startStation!=(null)){
       //creates correct route from user input
@@ -74,12 +78,23 @@ class Main{
       }
       //dispays graph of correct route from Start station to destination
       GraphDisplay slay = new GraphDisplay(correctRoutes);
+
       //displays graph of all the possible amtrack routes and nodes
       //GraphDisplay slay2 = new GraphDisplay(routes);
 
       //Calculates Statistics:
+      //number of nodes:
+      System.out.println("number of nodes is: "+ goodPath.size());
+
       //average degree:
-      System.out.println("Average Degree is "+avgDegree(degrees));
+      //okay did this kinda manually, assumming it will always be correct bc of yadayadayada
+      //System.out.println("Average Degree is "+avgDegree(degrees));
+      double average=(((double)(goodPath.size()*2-2)/goodPath.size()));
+      System.out.println("average degree is: "+ round.format(average));
+      
+      //number of edges: using degree sum formual
+      System.out.println("number of edges: "+ ((goodPath.size()*2-2)/2));
+      
 
     }
     else if (startStation==(null)){
@@ -95,8 +110,8 @@ class Main{
       }
       System.out.println("The station you entered is not valid");
       return null;
-      //throw new RuntimeErrorException(null, "The station you entered is not valid");
     }
+
     /**
      * calcualtes distance between two end points using pythagorean theorem
      */
@@ -115,6 +130,7 @@ class Main{
         ArrayList<Station> path= new ArrayList<Station>();
         seen.add(start);
         path.add(start);
+      
         // ArrayList<Station> pathypathpath = new ArrayList<Station>();
         // //System.out.println("path in first DFT"+depthFirstTraversal(path,destination,start,seen,routes));
         // pathypathpath = depthFirstTraversal(path,destination,start,seen,routes);
@@ -138,6 +154,7 @@ class Main{
   
           if(!seen.contains(nb)){
             degrees.add(r.degree(nb));
+            System.out.println(r.degree(nb));
             //System.out.println("not yet seen");
             path.add(nb);
             //System.out.println(path);
@@ -162,6 +179,8 @@ class Main{
           sum+=d.get(i);
 
         }
+        System.out.println(d.size());
+        System.out.println(sum);
         return sum/d.size();
       }
 
