@@ -1,4 +1,4 @@
 Enter your Start Destination:
 LAX
 Enter your End Destination:
-FTW 
+NOL 
