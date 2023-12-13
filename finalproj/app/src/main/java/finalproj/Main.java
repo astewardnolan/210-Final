@@ -53,7 +53,14 @@ class Main{
         //graph building stuff here!
         for(int i=0;i<allStations.size()-1;i++){
              //fix for consectuive
+             if(allStations.get(i).getCurrentStation().equals(allStations.get(i+1).getCurrentStation())){
+              System.out.println("i is "+allStations.get(i)+" and i+1 is "+allStations.get(i+1));
+
+             }
+             else{
               routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
+             }
+              
             
           }
         
