@@ -1,4 +1,3 @@
-package finalproj;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
@@ -62,7 +61,7 @@ public class GraphDisplay extends JComponent implements ActionListener {
   public static final int NODE_RADIUS = 16;
 
   /** Radius to draw arrows */
-  public static final int ARROW_RADIUS = NODE_RADIUS+4;
+  public static final int ARROW_RADIUS = NODE_RADIUS+3;
   
   /** default color of nodes */
   public static final Color DEFAULT_NODE_COLOR = new Color(192, 192, 255);
@@ -409,10 +408,29 @@ public class GraphDisplay extends JComponent implements ActionListener {
     return edges;
   }
 
+  /** simple three-line arrow */
+  private void drawArrow(Point p1, Point p2, Graphics2D g2) {
+    double d = p1.distance(p2);
+    double dx = (p2.x-p1.x)/d;
+    double dy = (p2.y-p1.y)/d;
+    double dxrot = -dy;
+    double dyrot = dx;
+    int a0x = (int)(p2.x-ARROW_RADIUS*dx);
+    int a0y = (int)(p2.y-ARROW_RADIUS*dy);
+    int a1x = (int)(a0x-5*dx+2.5*dxrot);
+    int a1y = (int)(a0y-5*dy+2.5*dyrot);
+    int a2x = (int)(a0x-5*dx-2.5*dxrot);
+    int a2y = (int)(a0y-5*dy-2.5*dyrot);
+    g2.drawLine(p1.x,p1.y,p2.x,p2.y);
+    g2.drawLine(a0x,a0y,a1x,a1y);
+    g2.drawLine(a0x,a0y,a2x,a2y);
+    g2.drawLine(a1x,a1y,a2x,a2y);
+  }
+  
   /** for drawing arrows
   * see https://stackoverflow.com/questions/2027613/how-to-draw-a-directed-arrow-line-in-java
   */
-  private void drawArrow(Point p1, Point p2, Graphics g) {
+  private void oldDrawArrow(Point p1, Point p2, Graphics g) {
     Graphics2D g2 = (Graphics2D) g.create();
     g2.setStroke(new BasicStroke(2));
     g2.drawLine(p1.x,p1.y,p2.x,p2.y);
@@ -473,12 +491,12 @@ public class GraphDisplay extends JComponent implements ActionListener {
         Point dloc = getLoc(e);
         Object edge = getEdgeBetween(n,e);
         g2.setColor(getColor(edge));
+        g2.setStroke(new BasicStroke(2));
         //System.out.println(getColor(edge)+" "+edge);
         if (isDirected) {
-          drawArrow(loc,dloc,g);
+          drawArrow(loc,dloc,g2);
         } else {
           //Graphics2D g2 = (Graphics2D) g.create();
-          g2.setStroke(new BasicStroke(2));
           g2.drawLine(loc.x,loc.y,dloc.x,dloc.y);
         }
 
@@ -492,11 +510,9 @@ public class GraphDisplay extends JComponent implements ActionListener {
     for (Object n : nodes) {
       Point pos = getLoc(n);
       g.setColor(getColor(n));
-      g.fillOval(pos.x - NODE_RADIUS, pos.y - NODE_RADIUS,
-              2 * NODE_RADIUS, 2 * NODE_RADIUS);
+      g.fillOval(pos.x - NODE_RADIUS, pos.y - NODE_RADIUS, 2 * NODE_RADIUS, 2 * NODE_RADIUS);
       g.setColor(Color.black);
-      g.drawOval(pos.x - NODE_RADIUS, pos.y - NODE_RADIUS,
-              2 * NODE_RADIUS, 2 * NODE_RADIUS);
+      g.drawOval(pos.x - NODE_RADIUS, pos.y - NODE_RADIUS, 2 * NODE_RADIUS, 2 * NODE_RADIUS);
       String label = getLabel(n);
       Rectangle2D sbound = g.getFontMetrics().getStringBounds(label, g);
       int descent = g.getFontMetrics().getDescent();

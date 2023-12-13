@@ -12,6 +12,7 @@ import com.google.common.graph.*;
 class Main{
 
    static ArrayList<Station> allStations = new ArrayList<Station>();
+   static ArrayList<Station> goodPath = new ArrayList<Station>();
    static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
    static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
    static boolean validRoute = false;
@@ -85,16 +86,17 @@ class Main{
           System.out.println("station station is "+startStation);
 
           //ArrayList<Station> path= depthFirstTraversal(startStation, destination);
-          System.out.println("hi"+depthFirstTraversal(startStation, destination));
-          // if(path==null){
-          //   System.out.println("no route found");
-          // }
-          // else{
-          //   for(int i=0;i<path.size()-1;i++){
-          //     correctRoutes.putEdgeValue(path.get(i),path.get(i+1), pyth(path.get(i).getx(),path.get(i).gety(),path.get(i+1).getx(),path.get(i+1).gety()));
-          //   }
-          // }
-          // GraphDisplay slay = new GraphDisplay(correctRoutes);
+          goodPath=depthFirstTraversal(startStation, destination);
+          System.out.println(goodPath);
+          if(goodPath==null){
+            System.out.println("no route found");
+          }
+          else{
+            for(int i=0;i<goodPath.size()-1;i++){
+              correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
+            }
+          }
+          GraphDisplay slay = new GraphDisplay(correctRoutes);
         }
         else if (startStation==(null)){
          System.out.println("You start station does not exist :( Sad bad no good)");
@@ -133,7 +135,7 @@ class Main{
         // //System.out.println("path in first DFT"+depthFirstTraversal(path,destination,start,seen,routes));
         // pathypathpath = depthFirstTraversal(path,destination,start,seen,routes);
         // System.out.println("pathypathapth: "+pathypathpath);
-        return depthFirstTraversal(path,destination,start,seen,routes);;
+        return depthFirstTraversal(path,destination,start,seen,routes);
 
 
       }
