@@ -1,4 +1,4 @@
 Enter your Start Destination:
-PON
+WAS
 Enter your End Destination:
 CHI 
