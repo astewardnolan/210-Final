@@ -105,8 +105,8 @@ class Main{
               correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
             }
           }
-          GraphDisplay slay = new GraphDisplay(correctRoutes);
-          //GraphDisplay slay2 = new GraphDisplay(routes);
+          //GraphDisplay slay = new GraphDisplay(correctRoutes);
+          GraphDisplay slay2 = new GraphDisplay(routes);
           //okay we have a real LAX issue!!!
           //okay more in general, we have issue with the very last or first stops, prob bc of END and START neighbors!!
 
@@ -179,6 +179,11 @@ class Main{
 
         return null;
       }
+
+      // public double avgDegree (ValueGraph<Station,String> g){
+        
+
+      // }
 
       
 
