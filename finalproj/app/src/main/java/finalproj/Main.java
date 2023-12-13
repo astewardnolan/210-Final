@@ -105,6 +105,7 @@ class Main{
           GraphDisplay slay = new GraphDisplay(correctRoutes);
           //GraphDisplay slay2 = new GraphDisplay(routes);
           //okay we have a real LAX issue!!!
+          //okay more in general, we have issue with the very last or first stops, prob bc of END and START neighbors!!
 
         }
         else if (startStation==(null)){
