@@ -102,8 +102,8 @@ class Main{
               correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
             }
           }
-          //GraphDisplay slay = new GraphDisplay(correctRoutes);
-          GraphDisplay slay = new GraphDisplay(routes);
+          GraphDisplay slay = new GraphDisplay(correctRoutes);
+          //GraphDisplay slay = new GraphDisplay(routes);
 
         }
         else if (startStation==(null)){
