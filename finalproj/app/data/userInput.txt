@@ -1,4 +1,4 @@
 Enter your Start Destination:
-LAX
+PON
 Enter your End Destination:
 CHI 

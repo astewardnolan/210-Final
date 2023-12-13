@@ -104,6 +104,7 @@ class Main{
           }
           GraphDisplay slay = new GraphDisplay(correctRoutes);
           //GraphDisplay slay2 = new GraphDisplay(routes);
+          //okay we have a real LAX issue!!!
 
         }
         else if (startStation==(null)){
