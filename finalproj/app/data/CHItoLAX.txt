@@ -41,7 +41,6 @@ X,Y,OBJECTID,PREVSTN,STNNAME,TOSTN,ADDRESS1,ADDRESS2,CITY,STATE,ZIP,STNTYPE,STFI
 -117.647857999646931,34.061706999778266,584,PSN,ONA,POS,"Ontario, California",228 South Plum Street,Amtrak Passenger Platform,Ontario,CA,91764,RAIL,06
 -117.750632999713105,34.059395000179165,629,ONA,POS,LAX,"Pomona (Sunset Ltd), California",100 West Commercial Street,,Pomona,CA,91768,RAIL,06
 -118.236533999644337,34.056297000306358,233,POS,LAX,END,"Los Angeles, California",800 North Alameda Street,Los Angeles Union Passenger Terminal,Los Angeles,CA,90012-2902,RAIL,06
--118.236533999644337,34.056297000306358,233,START,LAX,POS,"Los Angeles, California",800 North Alameda Street,Los Angeles Union Passenger Terminal,Los Angeles,CA,90012-2902,RAIL,06
 -117.750632999713105,34.059395000179165,629,LAX,POS,ONA,"Pomona (Sunset Ltd), California",100 West Commercial Street,,Pomona,CA,91768,RAIL,06
 -117.647857999646931,34.061706999778266,584,POS,ONA,PSN,"Ontario, California",228 South Plum Street,Amtrak Passenger Platform,Ontario,CA,91764,RAIL,06
 -116.545012999250503,33.895942999769659,638,ONA,PSN,YUM,"Palm Springs (Train), California",Indian Ave. and Palm Springs Station Rd.,0.6 mi/0.965 km south of I-10,North Palm Springs,CA,92258,RAIL,06

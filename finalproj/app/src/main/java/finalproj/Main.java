@@ -52,10 +52,9 @@ class Main{
 
         //graph building stuff here!
         for(int i=0;i<allStations.size();i++){
-            if(!allStations.get(i).getNextStation().equals("END")){
-              //can you add edges without nodes 
-              routes.putEdgeValue(allStations.get(i),allStations.get(i+1), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
-            }
+             
+              routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
+            
           }
         
         Scanner userInput = null;
@@ -96,7 +95,9 @@ class Main{
               correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
             }
           }
-          GraphDisplay slay = new GraphDisplay(correctRoutes);
+          //GraphDisplay slay = new GraphDisplay(correctRoutes);
+          GraphDisplay slay = new GraphDisplay(routes);
+
         }
         else if (startStation==(null)){
          System.out.println("You start station does not exist :( Sad bad no good)");
@@ -125,6 +126,8 @@ class Main{
         int d= (int) Math.floor(54.6*distance);
         return d+" miles";
       }
+
+      
 //nick said we should return arraylist 
       public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
         ArrayList<Station> seen = new ArrayList<Station>();
