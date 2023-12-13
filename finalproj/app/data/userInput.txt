@@ -1,4 +1,4 @@
 Enter your Start Destination:
-WAS
+BUR
 Enter your End Destination:
 CHI 
