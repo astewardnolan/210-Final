@@ -15,7 +15,6 @@ class Main{
    static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
    static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
    static boolean validRoute = false;
-   static ArrayList<Station> pathCopy= new ArrayList<Station>();
 
     //MutableValueGraph<Integer, Double> weightedGraph = ValueGraphBuilder.directed().build();
 
@@ -85,11 +84,21 @@ class Main{
         if(startStation!=(null)){
           System.out.println("station station is "+startStation);
 
-          depthFirstTraversal(startStation, destination);
-          GraphDisplay slay = new GraphDisplay(correctRoutes);
+          //ArrayList<Station> path= depthFirstTraversal(startStation, destination);
+          System.out.println("hi"+depthFirstTraversal(startStation, destination));
+          // if(path==null){
+          //   System.out.println("no route found");
+          // }
+          // else{
+          //   for(int i=0;i<path.size()-1;i++){
+          //     correctRoutes.putEdgeValue(path.get(i),path.get(i+1), pyth(path.get(i).getx(),path.get(i).gety(),path.get(i+1).getx(),path.get(i+1).gety()));
+          //   }
+          // }
+          // GraphDisplay slay = new GraphDisplay(correctRoutes);
         }
         else if (startStation==(null)){
          System.out.println("You start station does not exist :( Sad bad no good)");
+        
         }
   
     }
@@ -114,31 +123,27 @@ class Main{
         int d= (int) Math.floor(54.6*distance);
         return d+" miles";
       }
-
-      public static void depthFirstTraversal(Station start, String destination){
+//nick said we should return arraylist 
+      public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
         ArrayList<Station> seen = new ArrayList<Station>();
+        ArrayList<Station> path= new ArrayList<Station>();
         seen.add(start);
-        depthFirstTraversal(destination,start,seen, routes);
- 
-        if (!validRoute){
-          System.out.println("No route was found between the two stations");
-        }
-        else{
-          for(int i=0;i<pathCopy.size()-1;i++){
-            correctRoutes.putEdgeValue(pathCopy.get(i),pathCopy.get(i+1), pyth(pathCopy.get(i).getx(),pathCopy.get(i).gety(),pathCopy.get(i+1).getx(),pathCopy.get(i+1).gety()));
-          }
-        }
+        path.add(start);
+        ArrayList<Station> pathypathpath = new ArrayList<Station>();
+        //System.out.println("path in first DFT"+depthFirstTraversal(path,destination,start,seen,routes));
+        pathypathpath = depthFirstTraversal(path,destination,start,seen,routes);
+        System.out.println("pathypathapth: "+pathypathpath);
+        return pathypathpath;
+
 
       }
 
-      public static ArrayList<Station> depthFirstTraversal(String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
-        ArrayList<Station> path= new ArrayList<Station>();
+      private static ArrayList<Station> depthFirstTraversal(ArrayList<Station> path,String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
         //where can we make a new arraylist????? im so confused??? we want it to be a new one each time
-        
-        if(destination.equals(node.getCurrentStation())){
+        if(destination.equals(node.getCurrentStation().trim())){
+          System.out.println("slay");
           validRoute=true;
-          pathCopy=path;
-          System.out.println(path);
+          System.out.println("path in DFT metho"+path);
           return path;
         }
         System.out.println("in second DFT method and destination is "+destination);
@@ -150,9 +155,11 @@ class Main{
             path.add(nb);
             System.out.println(path);
             seen.add(nb);
-            depthFirstTraversal(destination, nb,seen,r);
+            return depthFirstTraversal(path,destination, nb,seen,r);
           }
         }
+        //this is whgat its returning everytime no matter what
+
         return null;
       }
 
