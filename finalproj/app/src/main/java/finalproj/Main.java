@@ -14,100 +14,78 @@ class Main{
   static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
   static boolean validRoute = false;
 
-    public static void main (String args[]){        
-        Scanner file = null;
-        String[] amtrakFiles = new String[]{"CHItoLAX.txt","CHItoNOL.txt","LAXtoCHI","LAXtoSEA.txt","NOLtoCHI.txt","SABtoWAS","SEAtoLAX.txt","WAStoSAB"};
-        try {
-            //System.out.println("file found");
-            file = new Scanner(new File("data/CHItoLAX.txt"));
-            
-        }catch(FileNotFoundException e){
-            
-            System.err.println("Cannot locate file.");
-            System.exit(-1);
-        }
-        file.nextLine();
-
-        while(file.hasNextLine()){
-              
-            String[] data = file.nextLine().split(",");
-            
-            if(data[0].length()>0 )  {
-                allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3],data[4],data[5]));
-            }  
+  public static void main (String args[]){  
+    //Reads in data file of all amtrack routes      
+    Scanner file = null;
+    try {
+      file = new Scanner(new File("data/routes.txt"));    
+    }catch(FileNotFoundException e){    
+      System.err.println("Cannot locate file.");
+      System.exit(-1);
+    }
+    file.nextLine();
+    while(file.hasNextLine()){        
+      String[] data = file.nextLine().split(",");
+      if(data[0].length()>0 )  {
+        allStations.add(new Station(Double.parseDouble(data[0]),Double.parseDouble(data[1]),data[3],data[4],data[5]));
+      }  
     }
     file.close();
-        //System.out.println(allStations);
 
-
-        //graph building stuff here!
-        for(int i=0;i<allStations.size()-1;i++){
-             //fix for consectuive
-             if(allStations.get(i).getCurrentStation().equals(allStations.get(i+1).getCurrentStation())){
-              //System.out.println("i is "+allStations.get(i)+" and i+1 is "+allStations.get(i+1));
-
-             }
-             else if(allStations.get(i).getNextStation().equals("END")){
-              //System.out.print("End of amtrack route");
-             }
-             else{
-              routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
-             }
-              
-            
-          }
-        
-        Scanner userInput = null;
-        //System.out.println("amtrack.txt");
-        try {
-            //System.out.println("file found");
-            userInput = new Scanner(new File("data/userInput.txt"));
-            
-        }catch(FileNotFoundException e){
-            
-            System.err.println("Cannot locate file.");
-            System.exit(-1);
-        }
-
-        //SECOND FILE SCANNER FOR USER INPUT
-        userInput.nextLine();
-        String from= userInput.nextLine().trim();
-        userInput.nextLine();
-        String destination= userInput.nextLine().trim();
-        userInput.close();
-        //System.out.println("from station is "+from);
-        //System.out.println("destination station is "+destination);
-
-
-  
-        Station startStation = findStation(from, allStations);
-        if(startStation!=(null)){
-          //System.out.println("station station is "+startStation);
-
-          //ArrayList<Station> path= depthFirstTraversal(startStation, destination);
-          goodPath=depthFirstTraversal(startStation, destination);
-          //System.out.println(goodPath);
-          if(goodPath==null){
-            System.out.println("no route found");
-          }
-          else{
-            for(int i=0;i<goodPath.size()-1;i++){
-              correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
-            }
-          }
-          GraphDisplay slay = new GraphDisplay(correctRoutes);
-          //GraphDisplay slay2 = new GraphDisplay(routes);
-          System.out.println("Average Degree is "+avgDegree(degrees));
-          //okay we have a real LAX issue!!!
-          //okay more in general, we have issue with the very last or first stops, prob bc of END and START neighbors!!
-
-        }
-        else if (startStation==(null)){
-         System.out.println("You start station does not exist :( Sad bad no good)");
-        
-        }
-  
+    //turns all the stations and data into nodes and edges of graph
+    for(int i=0;i<allStations.size()-1;i++){
+      if(allStations.get(i).getCurrentStation().equals(allStations.get(i+1).getCurrentStation())){
+        //skips station
+      }
+      else if(allStations.get(i).getNextStation().equals("END")){
+        //skips station
+      }
+      else{
+        routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
+      }  
     }
+
+    //reads in data from user input file
+    Scanner userInput = null;
+    try {
+      userInput = new Scanner(new File("data/userInput.txt"));  
+    }catch(FileNotFoundException e){  
+      System.err.println("Cannot locate file.");
+      System.exit(-1);
+    }
+    //turns user input data into Start station and Destination location
+    userInput.nextLine();
+    String from= userInput.nextLine().trim();
+    userInput.nextLine();
+    String destination= userInput.nextLine().trim();
+    userInput.close();
+    Station startStation = findStation(from, allStations);
+    //checks to make sure Start station is valid
+    if(startStation!=(null)){
+      //creates correct route from user input
+      goodPath=depthFirstTraversal(startStation, destination);
+      if(goodPath==null){
+        System.out.println("no route found");
+      }
+      else{
+        for(int i=0;i<goodPath.size()-1;i++){
+          correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
+        }
+      }
+      //dispays graph of correct route from Start station to destination
+      GraphDisplay slay = new GraphDisplay(correctRoutes);
+      //displays graph of all the possible amtrack routes and nodes
+      //GraphDisplay slay2 = new GraphDisplay(routes);
+
+      //Calculates Statistics:
+      //average degree:
+      System.out.println("Average Degree is "+avgDegree(degrees));
+
+    }
+    else if (startStation==(null)){
+      System.out.println("You start station does not exist :( Sad bad no good)");
+    }
+  }
 
     public static Station findStation(String stationName, ArrayList<Station> ar){
       for(int i=0; i<ar.size();i++){
