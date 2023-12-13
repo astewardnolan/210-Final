@@ -57,6 +57,9 @@ class Main{
               System.out.println("i is "+allStations.get(i)+" and i+1 is "+allStations.get(i+1));
 
              }
+             else if(allStations.get(i).getNextStation().equals("END")){
+              System.out.print("End of amtrack route");
+             }
              else{
               routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
              }
@@ -102,8 +105,8 @@ class Main{
               correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
             }
           }
-          GraphDisplay slay = new GraphDisplay(correctRoutes);
-          //GraphDisplay slay2 = new GraphDisplay(routes);
+          //GraphDisplay slay = new GraphDisplay(correctRoutes);
+          GraphDisplay slay2 = new GraphDisplay(routes);
           //okay we have a real LAX issue!!!
           //okay more in general, we have issue with the very last or first stops, prob bc of END and START neighbors!!
 
