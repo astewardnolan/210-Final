@@ -103,7 +103,7 @@ class Main{
             }
           }
           GraphDisplay slay = new GraphDisplay(correctRoutes);
-          //GraphDisplay slay = new GraphDisplay(routes);
+          //GraphDisplay slay2 = new GraphDisplay(routes);
 
         }
         else if (startStation==(null)){
