@@ -13,6 +13,7 @@ class Main{
 
    static ArrayList<Station> allStations = new ArrayList<Station>();
    static ArrayList<Station> goodPath = new ArrayList<Station>();
+    static ArrayList<Integer> degrees = new ArrayList<Integer>();
    static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
    static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
    static boolean validRoute = false;
@@ -47,18 +48,18 @@ class Main{
             }  
     }
     file.close();
-        System.out.println(allStations);
+        //System.out.println(allStations);
 
 
         //graph building stuff here!
         for(int i=0;i<allStations.size()-1;i++){
              //fix for consectuive
              if(allStations.get(i).getCurrentStation().equals(allStations.get(i+1).getCurrentStation())){
-              System.out.println("i is "+allStations.get(i)+" and i+1 is "+allStations.get(i+1));
+              //System.out.println("i is "+allStations.get(i)+" and i+1 is "+allStations.get(i+1));
 
              }
              else if(allStations.get(i).getNextStation().equals("END")){
-              System.out.print("End of amtrack route");
+              //System.out.print("End of amtrack route");
              }
              else{
               routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
@@ -70,7 +71,7 @@ class Main{
         Scanner userInput = null;
         //System.out.println("amtrack.txt");
         try {
-            System.out.println("file found");
+            //System.out.println("file found");
             userInput = new Scanner(new File("data/userInput.txt"));
             
         }catch(FileNotFoundException e){
@@ -85,18 +86,18 @@ class Main{
         userInput.nextLine();
         String destination= userInput.nextLine().trim();
         userInput.close();
-        System.out.println("from station is "+from);
-        System.out.println("destination station is "+destination);
+        //System.out.println("from station is "+from);
+        //System.out.println("destination station is "+destination);
 
 
   
         Station startStation = findStation(from, allStations);
         if(startStation!=(null)){
-          System.out.println("station station is "+startStation);
+          //System.out.println("station station is "+startStation);
 
           //ArrayList<Station> path= depthFirstTraversal(startStation, destination);
           goodPath=depthFirstTraversal(startStation, destination);
-          System.out.println(goodPath);
+          //System.out.println(goodPath);
           if(goodPath==null){
             System.out.println("no route found");
           }
@@ -105,8 +106,9 @@ class Main{
               correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
             }
           }
-          //GraphDisplay slay = new GraphDisplay(correctRoutes);
-          GraphDisplay slay2 = new GraphDisplay(routes);
+          GraphDisplay slay = new GraphDisplay(correctRoutes);
+          //GraphDisplay slay2 = new GraphDisplay(routes);
+          System.out.println("Average Degree is "+avgDegree(degrees));
           //okay we have a real LAX issue!!!
           //okay more in general, we have issue with the very last or first stops, prob bc of END and START neighbors!!
 
@@ -158,19 +160,20 @@ class Main{
       private static ArrayList<Station> depthFirstTraversal(ArrayList<Station> path,String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
         //where can we make a new arraylist????? im so confused??? we want it to be a new one each time
         if(destination.equals(node.getCurrentStation().trim())){
-          System.out.println("slay");
+          //System.out.println("slay");
           validRoute=true;
-          System.out.println("path in DFT metho"+path);
+          //System.out.println("path in DFT metho"+path);
           return path;
         }
-        System.out.println("in second DFT method and destination is "+destination);
+        //System.out.println("in second DFT method and destination is "+destination);
         for(Station nb:r.successors(node)){
-          System.out.println("current neighbor is "+nb.getCurrentStation());
+         // System.out.println("current neighbor is "+nb.getCurrentStation());
   
           if(!seen.contains(nb)){
-            System.out.println("not yet seen");
+            degrees.add(r.degree(nb));
+            //System.out.println("not yet seen");
             path.add(nb);
-            System.out.println(path);
+            //System.out.println(path);
             seen.add(nb);
             return depthFirstTraversal(path,destination, nb,seen,r);
           }
@@ -180,13 +183,20 @@ class Main{
         return null;
       }
 
-      // public double avgDegree (ValueGraph<Station,String> g){
-        
+      public static int numNodes (ValueGraph<Station,String> g){
+        Set<Station> s = g.nodes();
+        return s.size();
+      }
 
-      // }
+      public static double avgDegree(ArrayList<Integer> d){
+        int sum=0;
+        for(int i=0;i<d.size();i++){
+          System.out.println(d.get(i));
+          sum+=d.get(i);
 
-      
-
+        }
+        return sum/d.size();
+      }
 
 
 }
