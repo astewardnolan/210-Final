@@ -129,11 +129,11 @@ class Main{
         ArrayList<Station> path= new ArrayList<Station>();
         seen.add(start);
         path.add(start);
-        ArrayList<Station> pathypathpath = new ArrayList<Station>();
-        //System.out.println("path in first DFT"+depthFirstTraversal(path,destination,start,seen,routes));
-        pathypathpath = depthFirstTraversal(path,destination,start,seen,routes);
-        System.out.println("pathypathapth: "+pathypathpath);
-        return pathypathpath;
+        // ArrayList<Station> pathypathpath = new ArrayList<Station>();
+        // //System.out.println("path in first DFT"+depthFirstTraversal(path,destination,start,seen,routes));
+        // pathypathpath = depthFirstTraversal(path,destination,start,seen,routes);
+        // System.out.println("pathypathapth: "+pathypathpath);
+        return depthFirstTraversal(path,destination,start,seen,routes);;
 
 
       }
