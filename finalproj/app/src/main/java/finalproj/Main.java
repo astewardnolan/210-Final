@@ -51,8 +51,8 @@ class Main{
 
 
         //graph building stuff here!
-        for(int i=0;i<allStations.size();i++){
-             
+        for(int i=0;i<allStations.size()-1;i++){
+             //fix for consectuive
               routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
             
           }
@@ -95,8 +95,8 @@ class Main{
               correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
             }
           }
-          //GraphDisplay slay = new GraphDisplay(correctRoutes);
-          GraphDisplay slay = new GraphDisplay(routes);
+          GraphDisplay slay = new GraphDisplay(correctRoutes);
+          //GraphDisplay slay = new GraphDisplay(routes);
 
         }
         else if (startStation==(null)){
