@@ -9,13 +9,15 @@ import com.google.common.graph.*;
 import java.math.RoundingMode;  
 import java.text.DecimalFormat;
 
+/**
+ * Class to read in data files, create and traverse graph <3
+ */
 class Main{
   static ArrayList<Station> allStations = new ArrayList<Station>();
   static ArrayList<Station> goodPath = new ArrayList<Station>();
   static ArrayList<Integer> degrees = new ArrayList<Integer>();
   static MutableValueGraph<Station, String> routes = ValueGraphBuilder.directed().build();
   static MutableValueGraph<Station, String> correctRoutes = ValueGraphBuilder.directed().build();
-  static boolean validRoute = false;
   private static final DecimalFormat round = new DecimalFormat("0.00"); 
 
   public static void main (String args[]){  
@@ -145,10 +147,10 @@ class Main{
     }
 
   /**
-   * 
-   * @param start
-   * @param destination
-   * @return
+   * private depth first traversal, runns recursive DFT
+   * @param start the starting node 
+   * @param destination the end location
+   * @return returns recursive call to other DFT method
    */
   private static ArrayList<Station> depthFirstTraversal(Station start, String destination){
     ArrayList<Station> seen = new ArrayList<Station>();
@@ -156,35 +158,32 @@ class Main{
     seen.add(start);
     path.add(start);
     return depthFirstTraversal(path,destination,start,seen,routes);
+  }
+
+  /**
+   * DFT method, recursive
+   * @param path List of stations visited, will be the list of correct routes after all recursion finished
+   * @param destination final destination
+   * @param node current node
+   * @param seen list of all the stations visited, correct or not
+   * @param r value graph of all stations in data
+   * @return returns arraylist of correct stations to get from start station to destination station
+   */
+  private static ArrayList<Station> depthFirstTraversal(ArrayList<Station> path,String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
+    if(destination.equals(node.getCurrentStation().trim())){
+      return path;
     }
-
-      private static ArrayList<Station> depthFirstTraversal(ArrayList<Station> path,String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
-        //where can we make a new arraylist????? im so confused??? we want it to be a new one each time
-        if(destination.equals(node.getCurrentStation().trim())){
-          //System.out.println("slay");
-          validRoute=true;
-          //System.out.println("path in DFT metho"+path);
-          return path;
-        }
-        //System.out.println("in second DFT method and destination is "+destination);
-        for(Station nb:r.successors(node)){
-         // System.out.println("current neighbor is "+nb.getCurrentStation());
-  
-          if(!seen.contains(nb)){
-            degrees.add(r.degree(nb));
-            System.out.println(r.degree(nb));
-            //System.out.println("not yet seen");
-            path.add(nb);
-            //System.out.println(path);
-            seen.add(nb);
-            return depthFirstTraversal(path,destination, nb,seen,r);
-          }
-        }
-        //this is whgat its returning everytime no matter what
-
-        return null;
+    for(Station nb:r.successors(node)){  
+      if(!seen.contains(nb)){
+        degrees.add(r.degree(nb));
+        System.out.println(r.degree(nb));
+        path.add(nb);
+        seen.add(nb);
+        return depthFirstTraversal(path,destination, nb,seen,r);
       }
-
+    }
+    return null;
+  }
 
       //Alright, as of right now...we do not use these
       public static int numNodes (ValueGraph<Station,String> g){
