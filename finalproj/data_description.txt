@@ -1,0 +1,38 @@
+Our Dataset:
+Source: National Transportation Atlas Database (2015)
+Author: National Transportation Atlas Database (2015)
+URL: https://gist.github.com/brentajones/ced054626e8922cddd7009fdcea6b0a7#file-amtrak-csv
+
+Number of Nodes: 244
+Number of Edges: 250
+
+Qualities of the Graph:
+* Directed value graph, the graph will display the Amtrack routes from one station to another, each edge will represent 
+the train going one way.
+*There will be no self edges, because we will not allow for loops, or a train leaving off and ending up at the same station 
+*Duplicate Edges are okay, because there will be trains that leave from station A and arrive in station B, 
+as well as trains that leave from station B, and arrive in station A. These two trains will be counted as separate yet 
+duplicate edges in our graph.
+*Our graph will have edges connecting the different nodes, or in our case, stations according to our data sets. 
+*Our graph will have edges that have values, because the edges will hold the data with the distance in miles from 
+one node to the next (we will assume these distances are straight lines connecting each station since location data in our 
+dataset is only listed as x and y coordinates, distance will be calculated using Pythagorean theorem).
+*This graph will not account for connections, it will be direct trains only. In our output section, we will give the user the 
+information on how to get from one station to another, and will state the connections needed if there is no direct train.
+*In our documentation, there were some errors in the data formatting, not the data itself. For these issues in format, we
+ deleted them ourselves.
+*For simplicity, we also decided to get rid of the address of the station, and only use the station 3 letter code to identify
+
+*We had to parse down our data to make it more manageable, we decided to only make a graph of a few routes
+The routes we choose:
+-Texas eagle
+-Vermonter
+-City of new orleans
+-Coast starlight
+Because we were only using specific routes, we deleted all other information on stations that were not used
+
+*After reading in our data, we realized it didn’t have any information regarding connections. It only has the 
+coordinates and names of stations individually. After looking for a different dataset and not finding any that met all of our 
+needs, we decided to edit the dataset we have now to add connecting stations based on specific Amtrak routes (see above).
+
+*Now our data set contains the station, its previous station, and the station that comes next on the amtrack routes. 

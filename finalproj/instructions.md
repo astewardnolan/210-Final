@@ -18,7 +18,9 @@ Spend some time thinking about what sort of dataset you would like to work with.
 
 To document your work on this phase, you should create a file named `data_description.txt` that contains the following information:
 * Bibliographic information about the dataset (i.e., source url, authors/owners)
+
 * Number of nodes and edges
+
 * Qualities of the graph:  directed or undirected; self-edges ok?  duplicate edges ok? other choices made?
 
 There are several collections of graph data that you can browse if you need inspiration.  One [Large Network Dataset Collection](https://snap.stanford.edu/data/) is maintained at Stanford University and consists of cleaned data of various kinds.  Another option is [Kaggle](https://www.kaggle.com/), which includes a number of datatsets used for competitions.  You can search through the site -- just keep in mind that the data here may not be as clean as those in the previous collection.
@@ -78,8 +80,16 @@ Another possibility is to display it visually.  (This may work best for graphs w
 ## Final Documentation and Deliverables
 
 When you turn in your work on this project, be sure to include each of the following:
-* Your reflection on the assignment, including your development journal.  Both of these should be inside `readme.md`, in clearly marked sections.  Also include here the list of those you consulted with and a bibliography of any web sites consulted beyond the standard javadoc pages.
+
+* Your reflection on the assignment, including your development journal.  Both of these should be inside `readme.md`, in clearly marked sections. 
+
+Also include here the list of those you consulted with and a bibliography of any web sites consulted beyond the standard javadoc pages.
+
 * All the source files needed to compile your program
+
 * All the data files needed to run your program, plus the `data_description.txt` file
-* In a file named `demo.txt`, an example showing a sample run of your program.  This should be something we can reproduce while testing your program ourselves.  If the output is graphical, you should also include a screenshot of the results called `screenshot.png`.
+
+* In a file named `demo.txt`, an example showing a sample run of your program.  This should be something we can reproduce while testing your program ourselves. 
+ If the output is graphical, you should also include a screenshot of the results called `screenshot.png`.
+
 * a completed `checklist.txt`

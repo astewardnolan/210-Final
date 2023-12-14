@@ -1,0 +1,16 @@
+Our Bibliography:
+
+Guava Graphs:
+https://charlesreid1.com/wiki/Graphs/Guava
+
+Gradle scanner questions:
+https://github.com/gradle/gradle/issues/3350
+
+Sorting an arraylist:
+https://ioflood.com/blog/sort-arraylist-java/#:~:text=Java%20provides%20the%20Collections.,and%20navigate%20through%20your%20data.&text=In%20this%20example%2C%20we%20create,3%2C%208%2C%20and%201.
+
+Maximum degrees of Nodes:
+https://www.geeksforgeeks.org/print-nodes-having-maximum-and-minimum-degrees/
+
+Distance between two points using Lat and Long:
+https://www.youtube.com/watch?v=HaGj0DjX8W8

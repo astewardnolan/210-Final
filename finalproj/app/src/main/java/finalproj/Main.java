@@ -83,10 +83,10 @@ class Main{
       GraphDisplay slay = new GraphDisplay(correctRoutes);
       slay.setNodeColors(Color.PINK);
       //LOCATION STUFF
-      // for(int i=0;i<goodPath.size()-1;i++){
-      //   System.out.println("hi");
-      //   slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx())/10, (int)(goodPath.get(i).gety())/10));
-      // }
+       for(int i=0;i<goodPath.size()-1;i++){
+         System.out.println("hi");
+         slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx()), (int)(goodPath.get(i).gety())));
+       }
       
       //displays graph of all the possible amtrack routes and nodes
       //GraphDisplay slay2 = new GraphDisplay(routes);
