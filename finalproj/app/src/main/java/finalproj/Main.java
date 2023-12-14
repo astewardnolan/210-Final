@@ -85,7 +85,6 @@ class Main{
       //   slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx())/10, (int)(goodPath.get(i).gety())/10));
       // }
       
-
       //displays graph of all the possible amtrack routes and nodes
       //GraphDisplay slay2 = new GraphDisplay(routes);
 
@@ -107,48 +106,57 @@ class Main{
       int maxDeg= degrees.get(degrees.size()-1)/2;
       System.out.println("maximum degree: "+ maxDeg );
       
-
     }
     else if (startStation==(null)){
       System.out.println("You start station does not exist :( Sad bad no good)");
     }
   }
 
-    public static Station findStation(String stationName, ArrayList<Station> ar){
-      for(int i=0; i<ar.size();i++){
-        if(ar.get(i).getCurrentStation().equals(stationName)){
-          return ar.get(i);
-        }
+  /**
+   * finds station object based on station String name
+   * @param stationName the string name of the station
+   * @param ar array list of station objects
+   * @return returns the station object corresponding to the station name
+   */
+  public static Station findStation(String stationName, ArrayList<Station> ar){
+    for(int i=0; i<ar.size();i++){
+      if(ar.get(i).getCurrentStation().equals(stationName)){
+        return ar.get(i);
       }
-      System.out.println("The station you entered is not valid");
-      return null;
+    }
+    System.out.println("The station you entered is not valid");
+    return null;
+  }
+
+/**
+ * calcualtes distance between two enodes using pythagorean theorem
+ * @param x1 the x cordinate of node 1
+ * @param y1 the y cordinate of node 1
+ * @param x2 the x cordinate of node 2
+ * @param y2 the y cordinate of node 2
+ * @return returns the string containing the approximate distance between two nodes in miles
+ */
+  public static String pyth (double x1, double y1, double x2, double y2){
+      double xLen = Math.abs(x2-x1);
+      double yLen = Math.abs(y2-y1);
+      double distance = Math.sqrt(Math.pow(xLen,2)+Math.pow(yLen,2));
+      int d= (int) Math.floor(54.6*distance);
+      return d+" miles";
     }
 
-    /**
-     * calcualtes distance between two end points using pythagorean theorem
-     */
-    public static String pyth (double x1, double y1, double x2, double y2){
-        double xLen = Math.abs(x2-x1);
-        double yLen = Math.abs(y2-y1);
-        double distance = Math.sqrt(Math.pow(xLen,2)+Math.pow(yLen,2));
-        int d= (int) Math.floor(54.6*distance);
-        return d+" miles";
-      }
-
-            public static ArrayList<Station> depthFirstTraversal(Station start, String destination){
-        ArrayList<Station> seen = new ArrayList<Station>();
-        ArrayList<Station> path= new ArrayList<Station>();
-        seen.add(start);
-        path.add(start);
-      
-        // ArrayList<Station> pathypathpath = new ArrayList<Station>();
-        // //System.out.println("path in first DFT"+depthFirstTraversal(path,destination,start,seen,routes));
-        // pathypathpath = depthFirstTraversal(path,destination,start,seen,routes);
-        // System.out.println("pathypathapth: "+pathypathpath);
-        return depthFirstTraversal(path,destination,start,seen,routes);
-
-
-      }
+  /**
+   * 
+   * @param start
+   * @param destination
+   * @return
+   */
+  private static ArrayList<Station> depthFirstTraversal(Station start, String destination){
+    ArrayList<Station> seen = new ArrayList<Station>();
+    ArrayList<Station> path= new ArrayList<Station>();
+    seen.add(start);
+    path.add(start);
+    return depthFirstTraversal(path,destination,start,seen,routes);
+    }
 
       private static ArrayList<Station> depthFirstTraversal(ArrayList<Station> path,String destination, Station node, ArrayList<Station>seen, ValueGraph<Station, String> r){
         //where can we make a new arraylist????? im so confused??? we want it to be a new one each time
