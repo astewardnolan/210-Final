@@ -117,8 +117,8 @@ While this worked when going through the graph linearly, we aren’t sure how to
 Dec 12 2023:
 We were able to figure out our issues of traversal by making a recursive DFT method that kept track of the correct path, and return null if no correct path was found.
 Again, we displayed our graph visually, reading in our Arralist of stations in the correct route in a for loop, and adding a node and two edges for each Station corresponding to their data. This was the same process as reading the data for all the stations to a graph, but with only the stations in the correct route now, 
-This graph is called slay
-Our graph of ALL stations is called slay2
+This graph is called choosenRoute
+Our graph of ALL stations is called allRoutes
 
 
 
