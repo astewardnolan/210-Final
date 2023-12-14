@@ -27,3 +27,8 @@ and COMMENT out "allRoutes"
 
 SCREEN SHOT: 
 *if the user enters NOL to LAX, the graphical output will be :
+can be seen in screenshot1.png
+
+You can also manipulate the nodes to see the edges, direction 
+and stations more clearly.
+seen in screenshot2.png
