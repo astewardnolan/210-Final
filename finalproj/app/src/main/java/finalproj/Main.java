@@ -73,16 +73,18 @@ class Main{
         System.out.println("no route found");
       }
       else{
-        GraphDisplay slay = new GraphDisplay(correctRoutes);
-
         for(int i=0;i<goodPath.size()-1;i++){
           correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
-          slay.setLoc(goodPath.get(i).getCurrentStation(), new Point((int)goodPath.get(i).getx(), (int)goodPath.get(i).gety()));
         }
-        slay.labelOffset = new Point(0,2);
       }
       //dispays graph of correct route from Start station to destination
-      // GraphDisplay slay = new GraphDisplay(correctRoutes);
+      GraphDisplay slay = new GraphDisplay(correctRoutes);
+      //LOCATION STUFF
+      // for(int i=0;i<goodPath.size()-1;i++){
+      //   System.out.println("hi");
+      //   slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx())/10, (int)(goodPath.get(i).gety())/10));
+      // }
+      
 
       //displays graph of all the possible amtrack routes and nodes
       //GraphDisplay slay2 = new GraphDisplay(routes);
