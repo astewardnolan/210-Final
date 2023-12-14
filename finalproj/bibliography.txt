@@ -14,3 +14,6 @@ https://www.geeksforgeeks.org/print-nodes-having-maximum-and-minimum-degrees/
 
 Distance between two points using Lat and Long:
 https://www.youtube.com/watch?v=HaGj0DjX8W8
+
+Amtrack website (where we got data from)
+https://gist.github.com/brentajones/ced054626e8922cddd7009fdcea6b0a7#file-amtrak-csv

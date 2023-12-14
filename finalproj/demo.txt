@@ -32,3 +32,10 @@ can be seen in screenshot1.png
 You can also manipulate the nodes to see the edges, direction 
 and stations more clearly.
 seen in screenshot2.png
+
+Text output if you use LAX to NOL should be:
+number of nodes is: 60
+average degree is: 1.97
+number of edges: 59
+maximum degree: 2
+total distance traveled: 2862 miles

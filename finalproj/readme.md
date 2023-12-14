@@ -1,4 +1,4 @@
-Reflection:
+Reflection: Susie Hodon and Ashby Steward-Nolan
 
 ***NOTE ON USER INPUT*** (also in journal)
 ****For user input****
@@ -7,15 +7,10 @@ Reflection:
 *Then the user must COMMIT/save the userInput.txt and then can run the program with the desired stations
 *We then created a second scanner to read in the User input, and assign Station and string variables for the users’ imputed start and final destination startions. 
 
-Ashby:
-I found this projecy over all pretty fun, engaging and I enjoyed how much variation and choice we had in our implementation and choices. I also loved the visal graphics display, it made the graphs so much more understandable, and I think it really added to our goal of visually displaying how to get from one station to another. I definitley struggled the most with implementing our Depth First Traversal method, it was very comple and had to be modified for our specifc project. Also recursion is getting more familiar, but still always hard to full comprehend. In addition, our depth first traversal was a bit trickier becuase we wanted to keep track of the correct path once it was found using our DFT method, but needed to make sure we were ONLY storing the correct path NOT just the first path, or order of stations.
+Our Reflection:
+We found this project over all pretty fun, engaging and we enjoyed how much variation and choice we had in our implementation and choices. We also loved the visal graphics display, it made the graphs so much more understandable, and we think it really added to our goal of visually displaying how to get from one station to another. We definitley struggled the most with implementing our Depth First Traversal method, it was very complex and had to be modified for our specifc project. Also recursion is getting more familiar, but still always hard to full comprehend. In addition, our depth first traversal was a bit trickier becuase we wanted to keep track of the correct path once it was found using our DFT method, but needed to make sure we were ONLY storing the correct path NOT just the first path, or order of stations.
 
-Overall, I enjoyed this final a lot, and am really excited to keep learning about computer graphics in CS, and also hopefully continue to find ways to use my CS skills to display more datasets in interesting ways.
-
-Susie:
-
-
-
+Overall, we enjoyed this final a lot, and am really excited to keep learning about computer graphics in CS, and also hopefully continue to find ways to use our CS skills to display more datasets in interesting ways.
 
 Development JOURNAL:
 

@@ -47,7 +47,7 @@ class Main{
         //skips station
       }
       else{
-        routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()));
+        routes.putEdgeValue(findStation(allStations.get(i).getCurrentStation(),allStations),findStation(allStations.get(i+1).getCurrentStation(),allStations), Integer.toString(pyth(allStations.get(i).getx(),allStations.get(i).gety(),allStations.get(i+1).getx(),allStations.get(i+1).gety()))+"miles");
       }  
     }
 
@@ -66,7 +66,8 @@ class Main{
     String destination= userInput.nextLine().trim();
     userInput.close();
     Station startStation = findStation(from, allStations);
-
+    
+    int totalDistance=0;
     //checks to make sure Start station is valid
     if(startStation!=(null)){
       //creates correct route from user input
@@ -75,24 +76,16 @@ class Main{
         System.out.println("no route found");
       }
       else{
+        
         for(int i=0;i<goodPath.size()-1;i++){
-          correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()));
+          correctRoutes.putEdgeValue(goodPath.get(i),goodPath.get(i+1), Integer.toString(pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety()))+"miles");
+          totalDistance+= pyth(goodPath.get(i).getx(),goodPath.get(i).gety(),goodPath.get(i+1).getx(),goodPath.get(i+1).gety());
         }
       }
       //dispays graph of correct route from Start station to destination
       GraphDisplay choosenRoute = new GraphDisplay(correctRoutes);
       choosenRoute.setNodeColors(Color.PINK);
-      //LOCATION STUFF
-      // int maxX=-(int)123.099647999355625;
-      // int minX=(int)-72.317954999923245;
-      // int maxY=(int)47.598911000442342;
-      // int minY=(int)29.363080999688464;
 
-
-      //  for(int i=0;i<goodPath.size()-1;i++){
-      //    slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx()), (int)(goodPath.get(i).gety())));
-      //  }
-      
       //displays graph of all the possible amtrack routes and nodes
       //GraphDisplay allRoutes = new GraphDisplay(routes);
 
@@ -113,6 +106,9 @@ class Main{
       Collections.sort(degrees);
       int maxDeg= degrees.get(degrees.size()-1)/2;
       System.out.println("maximum degree: "+ maxDeg );
+      System.out.println("total distance traveled: "+ totalDistance+" miles");
+
+      
       
     }
     else if (startStation==(null)){
@@ -145,12 +141,12 @@ class Main{
  * @param y2 the y cordinate of node 2
  * @return returns the string containing the approximate distance between two nodes in miles
  */
-  public static String pyth (double x1, double y1, double x2, double y2){
+  public static int pyth (double x1, double y1, double x2, double y2){
       double xLen = Math.abs(x2-x1);
       double yLen = Math.abs(y2-y1);
       double distance = Math.sqrt(Math.pow(xLen,2)+Math.pow(yLen,2));
       int d= (int) Math.floor(54.6*distance);
-      return d+" miles";
+      return d;
     }
 
   /**
