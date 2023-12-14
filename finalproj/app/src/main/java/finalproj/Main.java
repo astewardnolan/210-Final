@@ -99,7 +99,7 @@ class Main{
       double average=(((double)(goodPath.size()*2-2)/goodPath.size()));
       System.out.println("average degree is: "+ round.format(average));
       
-      //number of edges: using degree sum formual
+      //number of edges: using degree sum formual which is the total number of degrees divided by 2
       System.out.println("number of edges: "+ ((goodPath.size()*2-2)/2));
 
       //maximum degree:
