@@ -177,6 +177,8 @@ class Main{
         return null;
       }
 
+
+      //Alright, as of right now...we do not use these
       public static int numNodes (ValueGraph<Station,String> g){
         Set<Station> s = g.nodes();
         return s.size();
@@ -185,12 +187,8 @@ class Main{
       public static double avgDegree(ArrayList<Integer> d){
         int sum=0;
         for(int i=0;i<d.size();i++){
-          System.out.println(d.get(i));
           sum+=d.get(i);
-
         }
-        System.out.println(d.size());
-        System.out.println(sum);
         return sum/d.size();
       }
 
