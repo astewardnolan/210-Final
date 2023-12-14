@@ -33,7 +33,7 @@ You can also manipulate the nodes to see the edges, direction
 and stations more clearly.
 seen in screenshot2.png
 
-Text output if you use LAX to NOL should be:
+Text output if you use NOL to LAX should be:
 number of nodes is: 60
 average degree is: 1.97
 number of edges: 59
