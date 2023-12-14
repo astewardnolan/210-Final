@@ -1,0 +1,29 @@
+DEMOOOOOOO:
+
+Not really sure how to do this, but can walk you through how to run our program Haile <3
+
+FIRST: USER INPUT:
+*go to userInput.txt and enter two stations you want to go to.
+    * they must be on one of the 4 routes we chose to inlcude, we have given some examples, and you can see more
+        station options in routes.txt
+    
+ex:
+Enter your Start Destination (ex: CHI, LAX, WNR, etc):
+NOL
+Enter your End Destination(ex: NOL, WAS, NHT, etc):
+LAX 
+
+*next, once you have editied the userInput.txt, you MUST COMMIT the changes
+
+SECOND: Build and run the program throuh Gradle
+
+If you want to see a graph display of all the stations in the data set, UNCOMMENT the GraphDisplay labeled 
+"allRoutes", and COMMENT out the Graph Display "choosenRoute"
+
+*Otherwise, if you would like to see the graph display of the routes you have choosen, UNCOMMENT "choosenRoute" 
+and COMMENT out "allRoutes"
+
+*The basic stats will always be for the graph for the user's choosen route.
+
+SCREEN SHOT: 
+*if the user enters NOL to LAX, the graphical output will be :

@@ -80,16 +80,21 @@ class Main{
         }
       }
       //dispays graph of correct route from Start station to destination
-      GraphDisplay slay = new GraphDisplay(correctRoutes);
-      slay.setNodeColors(Color.PINK);
+      GraphDisplay choosenRoute = new GraphDisplay(correctRoutes);
+      choosenRoute.setNodeColors(Color.PINK);
       //LOCATION STUFF
-       for(int i=0;i<goodPath.size()-1;i++){
-         System.out.println("hi");
-         slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx()), (int)(goodPath.get(i).gety())));
-       }
+      // int maxX=-(int)123.099647999355625;
+      // int minX=(int)-72.317954999923245;
+      // int maxY=(int)47.598911000442342;
+      // int minY=(int)29.363080999688464;
+
+
+      //  for(int i=0;i<goodPath.size()-1;i++){
+      //    slay.setLoc(goodPath.get(i), new Point((int)(goodPath.get(i).getx()), (int)(goodPath.get(i).gety())));
+      //  }
       
       //displays graph of all the possible amtrack routes and nodes
-      //GraphDisplay slay2 = new GraphDisplay(routes);
+      //GraphDisplay allRoutes = new GraphDisplay(routes);
 
       //Calculates Statistics: this calculates stats for CORRECT ROUTE, statistics do not apply for all routes
       //number of nodes:

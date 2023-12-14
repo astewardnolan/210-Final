@@ -85,9 +85,12 @@ When you turn in your work on this project, be sure to include each of the follo
 
 Also include here the list of those you consulted with and a bibliography of any web sites consulted beyond the standard javadoc pages.
 
+
 * All the source files needed to compile your program
 
+
 * All the data files needed to run your program, plus the `data_description.txt` file
+
 
 * In a file named `demo.txt`, an example showing a sample run of your program.  This should be something we can reproduce while testing your program ourselves. 
  If the output is graphical, you should also include a screenshot of the results called `screenshot.png`.
