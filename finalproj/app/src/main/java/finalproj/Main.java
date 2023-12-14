@@ -81,6 +81,7 @@ class Main{
       }
       //dispays graph of correct route from Start station to destination
       GraphDisplay slay = new GraphDisplay(correctRoutes);
+      slay.setNodeColors(Color.PINK);
       //LOCATION STUFF
       // for(int i=0;i<goodPath.size()-1;i++){
       //   System.out.println("hi");
@@ -113,6 +114,7 @@ class Main{
       System.out.println("You start station does not exist :( Sad bad no good)");
     }
   }
+
 
   /**
    * finds station object based on station String name
